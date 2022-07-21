@@ -1,0 +1,121 @@
+.awell-message {
+  @apply text-slate-600 text-2xl;
+}
+
+.awell-message h2,
+.awell-message h3,
+.awell-message h4 {
+  @apply mb-4;
+}
+
+.awell-message h1 {
+  @apply text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200;
+}
+
+.awell-message h2 {
+  @apply text-3xl sm:text-4xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
+}
+
+.awell-message h3 {
+  @apply text-2xl sm:text-2xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
+}
+
+.awell-message h4 {
+  @apply text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
+}
+
+.awell-message a.button:not(.custom-link) {
+  @apply leading-none inline-flex items-center cursor-pointer inline-block font-semibold rounded-lg whitespace-nowrap text-center px-5 py-2.5 text-white bg-sky-500 hover:bg-sky-400;
+}
+
+.awell-message a.button:not(.custom-link):focus {
+  @apply outline-none ring-2 ring-offset-2;
+}
+
+.awell-message a:not([aria-label='Anchor'], .button, .custom-link) {
+  @apply font-bold border-b border-sky-500;
+}
+
+.awell-message a:not([aria-label='Anchor'], .button, .custom-link):hover {
+  @apply border-b-2;
+}
+
+.awell-message h2,
+.awell-message h3 {
+  @apply mt-8;
+}
+
+.awell-message h2 + p,
+.awell-message h3 + p {
+  @apply mt-0;
+}
+
+.awell-message ol {
+  @apply list-none;
+}
+
+.awell-message ul:not(.code-block ul) {
+  @apply list-disc;
+}
+
+.awell-message ol:not(.code-block ol),
+.awell-message ul:not(.code-block ul) {
+  @apply pl-8 mb-6 leading-7 dark:text-slate-400;
+}
+
+.awell-message ol:not(.code-block ol) {
+  @apply pl-0;
+}
+
+.awell-message ol.no-pl,
+.awell-message ul.no-pl {
+  @apply pl-0;
+}
+
+.awell-message ol:not(.code-block ol) li,
+.awell-message ul:not(.code-block ul) li {
+  @apply mb-2 pl-2;
+}
+
+.awell-message ol:not(.code-block ol) li {
+  counter-increment: step-counter;
+  @apply relative pl-10;
+}
+
+.awell-message ol:not(.code-block ol) li:after {
+  content: counter(step-counter);
+  @apply inline-block bg-slate-200 text-slate-600 rounded-full font-medium mr-4 px-2 py-0.5 absolute left-0 top-0.5;
+}
+
+.awell-message p:not(.alert p) {
+  @apply my-6 leading-7 dark:text-slate-400;
+}
+
+.awell-message blockquote {
+  @apply border-l-2 border-sky-500 pl-6 my-6 dark:border-sky-400 break-words;
+}
+
+.awell-message blockquote p {
+  @apply py-2;
+  margin: 0;
+}
+
+.awell-message blockquote code {
+  font-size: 0.8rem !important;
+  line-height: 1.5rem !important;
+}
+
+.awell-message code {
+  @apply font-semibold;
+  color: #0f172a;
+  font-variant-ligatures: none;
+}
+
+.dark .awell-message code {
+  color: #fff;
+}
+
+.awell-message code:before,
+.awell-message code:after {
+  content: '`';
+}

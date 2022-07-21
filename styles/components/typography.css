@@ -1,0 +1,25 @@
+body {
+  @apply font-source-sans-pro text-slate-500 dark:text-slate-400;
+}
+
+h2,
+h3,
+h4 {
+  @apply mb-4;
+}
+
+h1 {
+  @apply text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight dark:text-slate-200;
+}
+
+h2 {
+  @apply text-xl sm:text-2xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
+}
+
+h3 {
+  @apply text-lg sm:text-xl text-slate-900 tracking-tight font-bold dark:text-slate-200;
+}
+
+h4 {
+  @apply text-slate-900 tracking-tight font-bold dark:text-slate-200;
+}
