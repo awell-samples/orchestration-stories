@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
 
 import { useFormActivityContext } from '../../../../../contexts/FormActivityContext'
 import { type Question } from '../../../../../types/generated/api.types'
@@ -11,7 +10,6 @@ interface SliderProps {
 }
 
 export const Number = ({ question }: SliderProps) => {
-  const { t } = useTranslation()
   const { goToNextQuestion, appendFormData } = useFormActivityContext()
 
   const {
@@ -55,7 +53,7 @@ export const Number = ({ question }: SliderProps) => {
         </div>
         <div className="">
           <KioskButton
-            label={t('next_cta')}
+            label="Next"
             type={'submit'}
             color="blue"
             disabled={false}

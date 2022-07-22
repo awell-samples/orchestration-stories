@@ -1,7 +1,6 @@
 import { Switch } from '@headlessui/react'
 import clsx from 'clsx'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import { useFormActivityContext } from '../../../../../contexts/FormActivityContext'
 import { type Question } from '../../../../../types/generated/api.types'
@@ -13,7 +12,6 @@ interface BooleanProps {
 }
 
 export const Boolean = ({ question }: BooleanProps) => {
-  const { t } = useTranslation()
   const { goToNextQuestion, appendFormData } = useFormActivityContext()
   const [value, setValue] = useState(false)
 
@@ -57,7 +55,7 @@ export const Boolean = ({ question }: BooleanProps) => {
         </div>
         <div className="">
           <KioskButton
-            label={t('next_cta')}
+            label="Next"
             onClick={() => onQuestionSubmit()}
             color="blue"
             disabled={false}

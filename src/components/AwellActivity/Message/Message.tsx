@@ -1,5 +1,3 @@
-import { useTranslation } from 'next-i18next'
-
 import { useMarkMessageAsRead } from '../../../hooks/awell-orchestration/useMarkMessageAsRead'
 import { useMessage } from '../../../hooks/awell-orchestration/useMessage'
 import { type Activity } from '../../../types/generated/api.types'
@@ -17,8 +15,6 @@ export const Message = ({
   patientId,
   onActivityCompleted,
 }: MessageProps) => {
-  const { t } = useTranslation()
-
   const { message, loading } = useMessage({
     messageId: messageActivity.object.id,
   })
@@ -51,7 +47,7 @@ export const Message = ({
       </div>
       <div className="">
         <KioskButton
-          label={t('next_cta')}
+          label="Next"
           onClick={() => handleOnClick()}
           color="blue"
           disabled={loading ? true : false}

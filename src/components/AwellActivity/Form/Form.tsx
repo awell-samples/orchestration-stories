@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import { Loading } from '@/components/Loading'
+
 import {
   FormActivityProvider,
   useFormActivityContext,
@@ -8,7 +10,6 @@ import { useForm as useFormQuery } from '../../../hooks/awell-orchestration/useF
 import { QuestionWithVisibility } from '../../../types/form.types'
 import { type Activity } from '../../../types/generated/api.types'
 import { KioskButton } from '../../Button/variants'
-import { Loading } from '../../Loading'
 import { FormSkeleton } from '../../Skeleton'
 import {
   Boolean,
