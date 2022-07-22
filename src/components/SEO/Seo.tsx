@@ -22,7 +22,7 @@ export const SEO = ({
 }: SeoProps) => {
   return (
     <Head>
-      <title>{title}</title>
+      <title>{title} | Stories</title>
       <meta name="description" content={description} />
       <meta
         property="og:url"

@@ -4,9 +4,11 @@ import { User } from 'src/types/generated/api.types'
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { SEO } from '@/components/SEO'
 import { Spinner } from '@/components/Spinner'
-import { useCreatePatient } from '@/hooks/awell-orchestration/useCreatePatient'
-import { usePublishedPathwayDefinitions } from '@/hooks/awell-orchestration/usePublishedPathwayDefinitions'
-import { useStartPathway } from '@/hooks/awell-orchestration/useStartPathway'
+import {
+  useCreatePatient,
+  usePublishedPathwayDefinitions,
+  useStartPathway,
+} from '@/hooks/awell-orchestration'
 
 const DESCRIPTION =
   'Display a list of published pathways, select a pathway and start it for an anonymous patient.'
