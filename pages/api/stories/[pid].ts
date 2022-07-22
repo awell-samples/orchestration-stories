@@ -13,11 +13,9 @@ export default (
     const { pid } = req.query
     const story = stories.find((story) => story.id === pid)
 
-    if (story) {
+    if (story !== undefined) {
       res.status(200).json(story)
-    }
-
-    if (story) {
+    } else {
       res.status(404).json({ error: `No story found with id ${pid}` })
     }
   } catch (err) {
