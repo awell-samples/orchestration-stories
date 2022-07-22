@@ -1,7 +1,6 @@
 import { ReactNode, useState } from 'react'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
-import { SEO } from '@/components/SEO'
 import { Spinner } from '@/components/Spinner'
 import {
   useCreatePatient,
@@ -9,9 +8,6 @@ import {
   useStartPathway,
 } from '@/hooks/awell-orchestration'
 import { User } from '@/types/generated/api.types'
-
-const DESCRIPTION =
-  'Display a list of published pathways, select a pathway and start it for an anonymous patient.'
 
 export default function StartPathwayStory() {
   // Loading states
@@ -112,12 +108,6 @@ export default function StartPathwayStory() {
    */
   return (
     <>
-      <SEO
-        title="Start Pathway"
-        description={DESCRIPTION}
-        url="/stories/start-pathway"
-        canonicalUrl="/stories/start-pathway"
-      />
       <div className="max-w-xl mx-auto">
         <div>
           <label

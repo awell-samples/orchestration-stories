@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import useSWR from 'swr'
 
 import { BrowserWindow } from '@/components/BrowserWindow'
+import { SEO } from '@/components/SEO'
 import { Story } from '@/types/stories.types'
 
 import { Header } from './atoms'
@@ -27,6 +28,12 @@ export const StoryLayout = ({ storyId, children }: LayoutProps) => {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <SEO
+        title={data.title}
+        description={data.description}
+        url={data.path}
+        canonicalUrl={data.path}
+      />
       <Header
         title={data.title}
         docsUrl={data.docsUrl}
