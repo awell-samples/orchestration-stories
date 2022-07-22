@@ -1,15 +1,13 @@
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
-import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { appWithTranslation } from 'next-i18next'
+import type { NextPage } from 'next/types'
 // import Script from 'next/script'
 import type { ReactElement, ReactNode } from 'react'
 
 import client from '../src/clients/awellOrchestrationGraphQlClient'
-import { KioskProvider } from '../src/contexts/KioskContext'
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -50,10 +48,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       </Script> */}
 
       <ApolloProvider client={client}>
-        <KioskProvider>{getLayout(<Component {...pageProps} />)}</KioskProvider>
+        {getLayout(<Component {...pageProps} />)}
       </ApolloProvider>
     </>
   )
 }
 
-export default appWithTranslation(MyApp)
+export default MyApp

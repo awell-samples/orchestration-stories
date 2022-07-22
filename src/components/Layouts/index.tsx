@@ -1,1 +1,0 @@
-export { KioskLayout } from './KioskLayout'

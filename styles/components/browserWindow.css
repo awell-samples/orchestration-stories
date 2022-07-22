@@ -1,0 +1,48 @@
+.browserWindow {
+  @apply bg-white rounded-lg;
+  box-shadow: 0 20px 44px rgb(50 50 93 / 12%), 0 -1px 32px rgb(50 50 93 / 6%),
+    0 3px 12px rgb(0 0 0 / 8%);
+}
+
+.browserWrapper {
+  @apply h-full overflow-y-hidden rounded-lg flex flex-col;
+}
+
+.browserTopBar {
+  @apply bg-slate-50 py-2 px-4 rounded-lg rounded-b-none flex items-center border-b border-slate-100;
+  box-shadow: 0 0.5px 0 #ecf2f7;
+}
+
+.topBarButtons {
+  @apply flex mr-12;
+}
+
+.topBarButton {
+  @apply mr-1.5 rounded-full bg-slate-200 h-2 w-2;
+}
+
+.urlBar {
+  @apply w-[615px] h-5 flex mx-auto items-center justify-center bg-slate-200/50 rounded-xl font-semibold text-slate-700;
+  font-size: 10px;
+}
+
+.urlBarList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+  width: 100%;
+}
+
+.urlInputListItem {
+  grid-column-start: 2;
+  display: flex;
+  align-items: center;
+}
+
+.browserBody {
+  @apply relative h-full p-8 overflow-hidden rounded-lg rounded-b-none;
+}

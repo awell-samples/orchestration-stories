@@ -1,11 +1,12 @@
 @import 'tailwindcss/base';
 
 @import 'tailwindcss/components';
-@import './components/typography.css';
+/* @import './components/typography.css'; */
 @import './components/button.css';
 @import './components/form.css';
 @import './components/layout.css';
 @import './components/message.css';
+@import './components/browserWindow.css';
 
 @import 'tailwindcss/utilities';
 /** Import custom css utilities here **/
