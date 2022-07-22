@@ -1,5 +1,4 @@
 import { ReactNode, useState } from 'react'
-import { User } from 'src/types/generated/api.types'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { SEO } from '@/components/SEO'
@@ -9,6 +8,7 @@ import {
   usePublishedPathwayDefinitions,
   useStartPathway,
 } from '@/hooks/awell-orchestration'
+import { User } from '@/types/generated/api.types'
 
 const DESCRIPTION =
   'Display a list of published pathways, select a pathway and start it for an anonymous patient.'
