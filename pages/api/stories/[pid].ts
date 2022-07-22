@@ -9,14 +9,19 @@ export default (
   req: NextApiRequest,
   res: NextApiResponse<Story | { error: string }>
 ) => {
-  const { pid } = req.query
-  const story = stories.find((story) => story.id === pid)
+  try {
+    const { pid } = req.query
+    const story = stories.find((story) => story.id === pid)
 
-  if (story) {
-    res.status(200).json(story)
-  }
+    if (story) {
+      res.status(200).json(story)
+    }
 
-  if (story) {
-    res.status(404).json({ error: `No story found with id ${pid}` })
+    if (story) {
+      res.status(404).json({ error: `No story found with id ${pid}` })
+    }
+  } catch (err) {
+    //@ts-expect-error not sure how to type
+    res.status(500).json({ error: err?.message })
   }
 }
