@@ -1,31 +1,37 @@
 import { ReactNode } from 'react'
+import useSWR from 'swr'
 
 import { BrowserWindow } from '@/components/BrowserWindow'
+import { Story } from '@/types/stories.types'
 
 import { Header } from './atoms'
 
 interface LayoutProps {
-  title: string
-  docsUrl: string
-  codeUrl: string
-  description?: string
+  storyId: string
   children: ReactNode
 }
 
-export const StoryLayout = ({
-  title,
-  description,
-  docsUrl,
-  codeUrl,
-  children,
-}: LayoutProps) => {
+export const StoryLayout = ({ storyId, children }: LayoutProps) => {
+  const { data, error } = useSWR<Story>(
+    '/api/stories/' + storyId,
+    (apiURL: string) => fetch(apiURL).then((res) => res.json())
+  )
+
+  if (error) {
+    return <div>Something went wrong when fetching the story.</div>
+  }
+
+  if (!data) {
+    return <div />
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header
-        title={title}
-        docsUrl={docsUrl}
-        codeUrl={codeUrl}
-        description={description}
+        title={data.title}
+        docsUrl={data.docsUrl}
+        codeUrl={data.codeUrl}
+        description={data.description}
       />
       <div className="bg-slate-100/70 flex flex-col flex-grow">
         <div className="container my-16">

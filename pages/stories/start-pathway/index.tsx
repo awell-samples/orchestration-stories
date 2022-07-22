@@ -165,12 +165,7 @@ export default function StartPathwayStory() {
 
 StartPathwayStory.getLayout = function getLayout(page: ReactNode) {
   return (
-    <StoryLayout
-      title="List of published pathways & start a pathway"
-      description={DESCRIPTION}
-      docsUrl="https://developers.awellhealth.com/"
-      codeUrl="https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/start-pathway/index.tsx"
-    >
+    <StoryLayout storyId="published_pathways_and_start_pathway">
       {page}
     </StoryLayout>
   )

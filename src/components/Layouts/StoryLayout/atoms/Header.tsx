@@ -48,6 +48,7 @@ export const Header = ({
                 <a
                   title="View code"
                   className="font-semibold text-blue-700 mx-2 hover:text-blue-800"
+                  target="_blank"
                 >
                   View code
                 </a>

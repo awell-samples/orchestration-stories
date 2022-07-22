@@ -1,7 +1,3 @@
-import { ReactNode } from 'react'
-
-import { StoryLayout } from '@/components/Layouts/StoryLayout'
-
 import { SEO } from '../src/components/SEO'
 
 export default function Home() {
@@ -14,15 +10,7 @@ export default function Home() {
         url="/"
         canonicalUrl="/"
       />
-      hello
+      <div>Coming soon</div>
     </>
-  )
-}
-
-Home.getLayout = function getLayout(page: ReactNode) {
-  return (
-    <StoryLayout title="Create patient profile" docsUrl="#" codeUrl="#">
-      {page}
-    </StoryLayout>
   )
 }
