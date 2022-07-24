@@ -2,14 +2,16 @@ import { type Stories } from '@/types/stories.types'
 
 export const stories: Stories = [
   {
-    id: 'published_pathways_and_start_pathway',
+    id: 'start-pathway',
     title: 'List of published pathways & start a pathway',
     description:
       'Display a list of published pathways, select a pathway and start it for an anonymous patient.',
-    docsUrl: 'https://developers.awellhealth.com/',
+    docsUrl:
+      '/awell-orchestration/docs/use-cases/custom-integration/stories/start-pathway',
     codeUrl:
       'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/start-pathway/index.tsx',
     path: '/stories/start-pathway',
+    categories: ['Start pathway'],
     operations: [
       {
         type: 'QUERY',

@@ -55,9 +55,10 @@ export const Header = ({
               </Link>
             </li>
             <li>
-              <Link href={docsUrl}>
+              <Link href={`https://developers.awellhealth.com/${docsUrl}`}>
                 <a
                   title="View documentation"
+                  target="_blank"
                   className="font-semibold text-blue-700 mx-2 hover:text-blue-800"
                 >
                   Read docs

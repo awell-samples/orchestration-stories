@@ -124,11 +124,9 @@ export default function StartPathwayStory() {
             onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
               setSelectedPathway(e.target.value)
             }
+            defaultValue={selectedPathway === '' ? '' : selectedPathway}
           >
-            <option
-              disabled={true}
-              selected={selectedPathway === '' ? true : false}
-            >
+            <option disabled={true} value="">
               Select pathway to start
             </option>
             {publishedPathwayDefinitions.map((publishedPathway) => (
@@ -154,9 +152,5 @@ export default function StartPathwayStory() {
 }
 
 StartPathwayStory.getLayout = function getLayout(page: ReactNode) {
-  return (
-    <StoryLayout storyId="published_pathways_and_start_pathway">
-      {page}
-    </StoryLayout>
-  )
+  return <StoryLayout>{page}</StoryLayout>
 }

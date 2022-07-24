@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 import useSWR from 'swr'
 
@@ -8,11 +9,14 @@ import { Story } from '@/types/stories.types'
 import { Header } from './atoms'
 
 interface LayoutProps {
-  storyId: string
   children: ReactNode
 }
 
-export const StoryLayout = ({ storyId, children }: LayoutProps) => {
+export const StoryLayout = ({ children }: LayoutProps) => {
+  const router = useRouter()
+
+  const storyId = router.pathname.split('/').at(-1)
+
   const { data, error } = useSWR<Story>(
     '/api/stories/' + storyId,
     (apiURL: string) => fetch(apiURL).then((res) => res.json())
