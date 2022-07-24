@@ -35,8 +35,8 @@ export const StoryLayout = ({ children }: LayoutProps) => {
       <SEO
         title={data.title}
         description={data.description}
-        url={data.path}
-        canonicalUrl={data.path}
+        url={`stories/${data.id}`}
+        canonicalUrl={`stories/${data.id}`}
       />
       <Header
         title={data.title}

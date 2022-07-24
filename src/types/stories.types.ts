@@ -4,7 +4,6 @@ export type Story = {
   description: string
   docsUrl: string
   codeUrl: string
-  path: string
   categories?: string[]
   operations?: { type: 'QUERY' | 'MUTATION'; operationName: string }[]
 }
