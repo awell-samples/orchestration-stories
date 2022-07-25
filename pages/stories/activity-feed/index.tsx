@@ -2,10 +2,10 @@ import { ReactNode } from 'react'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 
-export default function SearchPatientStory() {
+export default function ActivityFeedStory() {
   return <div>Coming soon</div>
 }
 
-SearchPatientStory.getLayout = function getLayout(page: ReactNode) {
+ActivityFeedStory.getLayout = function getLayout(page: ReactNode) {
   return <StoryLayout>{page}</StoryLayout>
 }
