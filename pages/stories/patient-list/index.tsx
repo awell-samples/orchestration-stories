@@ -183,8 +183,15 @@ export default function PatientListStory() {
                             {patient.id}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            {patient.profile?.first_name}{' '}
-                            {patient.profile?.last_name}
+                            {patient.profile?.first_name ||
+                            patient.profile?.last_name ? (
+                              <span>
+                                {patient.profile?.first_name}{' '}
+                                {patient.profile?.last_name}
+                              </span>
+                            ) : (
+                              <span>Anonymous</span>
+                            )}
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                             {patient.profile?.email}
