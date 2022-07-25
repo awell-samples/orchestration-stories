@@ -13,7 +13,7 @@ interface UseCreatePatientHook {
 export const useCreatePatient = (): UseCreatePatientHook => {
   const [createPatientMutation] = useMutation(CREATE_PATIENT)
 
-  const createPatient = async (profileData: unknown) => {
+  const createPatient = async (profileData: CreatePatientInput) => {
     try {
       const { data } = await createPatientMutation({
         variables: {
