@@ -208,6 +208,9 @@ export default function CreatePatientStory() {
                   {...register('address.country')}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 >
+                  <option value="" disabled>
+                    Select a country
+                  </option>
                   <option>Belgium</option>
                   <option>United States</option>
                   <option>United Kingdom</option>

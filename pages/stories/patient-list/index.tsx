@@ -4,7 +4,6 @@ import {
 } from '@heroicons/react/solid'
 import Link from 'next/link'
 import { ReactNode, useState } from 'react'
-import ContentLoader from 'react-content-loader'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { usePatients } from '@/hooks/awell-orchestration/usePatients'
@@ -100,80 +99,16 @@ export default function PatientListStory() {
                     ? [...Array(pagination.count)].map((pageNumber, i) => (
                         <tr key={i}>
                           <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                            <ContentLoader
-                              speed={2}
-                              width={150}
-                              height={20}
-                              viewBox="0 0 150 20"
-                              backgroundColor="#f3f3f3"
-                              foregroundColor="#ecebeb"
-                            >
-                              <rect
-                                x="0"
-                                y="0"
-                                rx="0"
-                                ry="0"
-                                width="150"
-                                height="20"
-                              />
-                            </ContentLoader>
+                            <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            <ContentLoader
-                              speed={2}
-                              width={200}
-                              height={20}
-                              viewBox="0 0 200 20"
-                              backgroundColor="#f3f3f3"
-                              foregroundColor="#ecebeb"
-                            >
-                              <rect
-                                x="0"
-                                y="0"
-                                rx="0"
-                                ry="0"
-                                width="200"
-                                height="20"
-                              />
-                            </ContentLoader>
+                            <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
                           </td>
                           <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                            <ContentLoader
-                              speed={2}
-                              width={150}
-                              height={20}
-                              viewBox="0 0 150 20"
-                              backgroundColor="#f3f3f3"
-                              foregroundColor="#ecebeb"
-                            >
-                              <rect
-                                x="0"
-                                y="0"
-                                rx="0"
-                                ry="0"
-                                width="150"
-                                height="20"
-                              />
-                            </ContentLoader>
+                            <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
                           </td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                            <ContentLoader
-                              speed={2}
-                              width={150}
-                              height={20}
-                              viewBox="0 0 150 20"
-                              backgroundColor="#f3f3f3"
-                              foregroundColor="#ecebeb"
-                            >
-                              <rect
-                                x="0"
-                                y="0"
-                                rx="0"
-                                ry="0"
-                                width="150"
-                                height="20"
-                              />
-                            </ContentLoader>
+                            <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
                           </td>
                         </tr>
                       ))

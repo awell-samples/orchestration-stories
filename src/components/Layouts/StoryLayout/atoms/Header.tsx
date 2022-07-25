@@ -5,6 +5,7 @@ interface HeaderProps {
   description?: string
   docsUrl: string
   codeUrl: string
+  storyConfigInputs?: { id: string; label: string; defaultValue?: string }[]
 }
 
 export const Header = ({
@@ -12,7 +13,9 @@ export const Header = ({
   description,
   docsUrl,
   codeUrl,
+  storyConfigInputs,
 }: HeaderProps) => {
+  console.log(storyConfigInputs)
   return (
     <div className="container my-8">
       <div className="flex items-center">
@@ -102,6 +105,42 @@ export const Header = ({
           </a>
         </Link>
       </div>
+      {storyConfigInputs && (
+        <div className="mt-4 bg-gray-100 rounded-xl">
+          <div className="max-w-7xl mx-auto py-3 px-4 sm:flex sm:items-center sm:px-6 lg:px-8">
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Story options
+            </h3>
+            <div
+              aria-hidden="true"
+              className="hidden w-px h-5 bg-gray-300 sm:block sm:ml-4"
+            ></div>
+            <div className="flex justify-center gap-x-4 ml-4">
+              {storyConfigInputs.map((input) => (
+                <div key={input.id} className="flex items-center">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mr-2"
+                  >
+                    {input.label}
+                  </label>
+                  <div className="">
+                    <input
+                      type="text"
+                      name={input.id}
+                      id={input.id}
+                      defaultValue={
+                        input?.defaultValue ? input.defaultValue : ''
+                      }
+                      className="w-64 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
