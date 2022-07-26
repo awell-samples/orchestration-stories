@@ -178,9 +178,9 @@ const SettingsTab = ({ patientId }: { patientId: string }) => {
 
 export default function PatientProfileStory() {
   const [activeTab, setActiveTab] = useState('Profile')
-  const { patient } = usePatient('-9cJ9bRnL8So6tYAu9_w2')
+  const { patient } = usePatient('bFen_yYlCXm4Gwz_V09ls')
   const { updatePatient, loading: updatingPatient } = useUpdatePatient(
-    '-9cJ9bRnL8So6tYAu9_w2'
+    'bFen_yYlCXm4Gwz_V09ls'
   )
 
   // React hook form to keep track of data in the form
