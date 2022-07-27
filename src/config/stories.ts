@@ -44,8 +44,8 @@ export const stories: Stories = [
     ],
   },
   {
-    id: 'patient-search',
-    title: 'Patient search',
+    id: 'search-patients',
+    title: 'Search patients',
     description:
       'Learn how to create a search on patient code or national registry number',
     docsUrl:
@@ -66,7 +66,7 @@ export const stories: Stories = [
   },
   {
     id: 'activity-feed',
-    title: 'Activity feed',
+    title: 'Create an activity feed',
     description:
       'Create a chronological activity feed of everything that has happened in a pathway.',
     docsUrl:
@@ -83,7 +83,7 @@ export const stories: Stories = [
   },
   {
     id: 'conversational-form',
-    title: 'Conversational form (questions one-by-one)',
+    title: 'Display a conversational form (questions one-by-one)',
     description:
       'Display a form in a conversational interface (question-by-question) and send the response back to the Awell API.',
     docsUrl:
@@ -108,7 +108,7 @@ export const stories: Stories = [
   },
   {
     id: 'form-page',
-    title: 'Form page',
+    title: 'Display a form page',
     description:
       'Display a form on a webpage and send the response back to the Awell API.',
     docsUrl:
@@ -133,7 +133,7 @@ export const stories: Stories = [
   },
   {
     id: 'data-dictionary',
-    title: 'Data dictionary',
+    title: 'Create a data dictionary',
     description:
       'Create a data dictionary displaying all data points that are collected in a given pathway version.',
     docsUrl:
@@ -150,7 +150,7 @@ export const stories: Stories = [
   },
   {
     id: 'message',
-    title: 'Message',
+    title: 'Display a message action',
     description:
       'Display a message with subject, content, and attachments to your clients. Additionally, let the Awell API known that the message was read.',
     docsUrl:
@@ -171,7 +171,7 @@ export const stories: Stories = [
   },
   {
     id: 'patient-list',
-    title: 'Patient list',
+    title: 'Create a patient list',
     description:
       'Create a dashboard or list of all patients in your tenant with filters and pagination.',
     docsUrl:
@@ -188,7 +188,7 @@ export const stories: Stories = [
   },
   {
     id: 'patient-profile',
-    title: 'Patient profile & edit',
+    title: 'Create a patient profile page',
     description:
       'Create a patient profile page that lists all patient data and allows to update patient data.',
     docsUrl:
@@ -209,7 +209,7 @@ export const stories: Stories = [
   },
   {
     id: 'timeline',
-    title: 'Timeline',
+    title: 'Create a timeline view',
     description:
       "Construct a Gantt or Timeline-style view that gives your users a high-level view of a patient's progress through a care flow.",
     docsUrl:
