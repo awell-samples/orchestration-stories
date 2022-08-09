@@ -224,4 +224,36 @@ export const stories: Stories = [
       },
     ],
   },
+  {
+    id: 'hosted-pathway',
+    title: 'Awell hosted pathway',
+    description:
+      'Send your clients to an Awell hosted page to complete an onboarding flow or simple pathway.',
+    docsUrl: '/awell-orchestration/docs/use-cases/hosted-pathway',
+    codeUrl:
+      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/hosted-pathway/index.tsx',
+    categories: ['Hosted pathway'],
+    operations: [
+      {
+        type: 'MUTATION',
+        operationName: 'startHostedPathwaySession',
+      },
+    ],
+  },
+  {
+    id: 'hosted-activity',
+    title: 'Awell hosted activity',
+    description:
+      'Send stakeholders to an Awell hosted page to complete activities.',
+    docsUrl: '/awell-orchestration/docs/use-cases/hosted-activity',
+    codeUrl:
+      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/hosted-activity/index.tsx',
+    categories: ['Hosted activity'],
+    operations: [
+      {
+        type: 'MUTATION',
+        operationName: 'startHostedActivitySession',
+      },
+    ],
+  },
 ]
