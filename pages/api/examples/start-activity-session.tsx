@@ -1,4 +1,3 @@
-import { request } from 'http'
 import type { NextApiRequest, NextApiResponse } from 'next/types'
 
 import { type StartPathwayPayload } from '@/types/generated/api.types'
