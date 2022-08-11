@@ -1,9 +1,10 @@
 import { ReactNode } from 'react'
 
+import { ComingSoon } from '@/components/ComingSoon'
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 
 export default function ConversationalFormStory() {
-  return <div>Coming soon</div>
+  return <ComingSoon />
 }
 
 ConversationalFormStory.getLayout = function getLayout(page: ReactNode) {
