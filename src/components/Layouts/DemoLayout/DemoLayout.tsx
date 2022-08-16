@@ -12,6 +12,7 @@ interface LayoutProps {
   slug: string
   docsUrl: string
   codeUrl: string
+  browserUrl: string
 }
 
 export const DemoLayout = ({
@@ -20,6 +21,7 @@ export const DemoLayout = ({
   slug,
   docsUrl,
   codeUrl,
+  browserUrl,
   children,
 }: LayoutProps) => {
   return (
@@ -38,7 +40,7 @@ export const DemoLayout = ({
       />
       <div className="bg-slate-100/70 flex flex-col flex-grow">
         <div className="container my-16">
-          <BrowserWindow>{children}</BrowserWindow>
+          <BrowserWindow browserUrl={browserUrl}>{children}</BrowserWindow>
         </div>
       </div>
     </div>

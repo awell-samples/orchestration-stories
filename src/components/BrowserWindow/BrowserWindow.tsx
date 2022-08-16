@@ -2,8 +2,12 @@ import { ReactNode } from 'react'
 
 interface BrowserWindowProps {
   children: ReactNode
+  browserUrl?: string
 }
-export const BrowserWindow = ({ children }: BrowserWindowProps) => {
+export const BrowserWindow = ({
+  browserUrl = 'yourdomain.com',
+  children,
+}: BrowserWindowProps) => {
   return (
     <div className="browserWindow">
       <div className="browserWrapper">
@@ -32,7 +36,7 @@ export const BrowserWindow = ({ children }: BrowserWindowProps) => {
                     fill="#6B7A94"
                   ></path>
                 </svg>
-                <div className="ml-1">yourdomain.com</div>
+                <div className="ml-1">{browserUrl}</div>
               </li>
             </ul>
           </div>

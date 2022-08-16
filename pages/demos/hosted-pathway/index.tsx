@@ -104,7 +104,7 @@ export default function HostedPathwayStory() {
         type="submit"
         className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:cursor-not-allowed"
       >
-        Start session
+        Get Started
       </button>
     </form>
   )
@@ -118,6 +118,7 @@ HostedPathwayStory.getLayout = function getLayout(page: ReactNode) {
       description="Send your clients to an Awell hosted page to complete an onboarding flow or simple pathway."
       docsUrl="#"
       codeUrl="#"
+      browserUrl="https://noala.co/"
     >
       {page}
     </DemoLayout>
