@@ -6,7 +6,7 @@ import { BrowserWindow } from '@/components/BrowserWindow'
 import { SEO } from '@/components/SEO'
 import { Story } from '@/types/stories.types'
 
-import { Header } from './atoms'
+import { Header } from '../atoms'
 
 interface LayoutProps {
   children: ReactNode
