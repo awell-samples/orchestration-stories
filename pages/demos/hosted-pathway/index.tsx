@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline'
 import { ReactNode, useEffect, useState } from 'react'
 
@@ -100,9 +101,17 @@ export default function HostedPathwayStory() {
       action="/api/demos/start-pathway-session"
       method="POST"
     >
+      <div className="mx-auto text-center mb-12">
+        <img
+          src="https://secureservercdn.net/160.153.138.201/k6t.378.myftpupload.com/wp-content/uploads/2021/08/noala_wordmark_navy-e1636974899334.png"
+          width="120"
+          className="mx-auto"
+          alt="Demo"
+        />
+      </div>
       <button
         type="submit"
-        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:cursor-not-allowed"
+        className={`bg-[#7A5AF8] hover:bg-[#7A5AF8]/[0.9] inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-[#7A5AF8] disabled:cursor-not-allowed`}
       >
         Get Started
       </button>
