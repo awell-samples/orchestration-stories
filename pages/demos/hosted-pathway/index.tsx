@@ -103,7 +103,7 @@ export default function HostedPathwayStory() {
     >
       <div className="mx-auto text-center mb-12">
         <img
-          src="https://secureservercdn.net/160.153.138.201/k6t.378.myftpupload.com/wp-content/uploads/2021/08/noala_wordmark_navy-e1636974899334.png"
+          src="https://images.squarespace-cdn.com/content/v1/610196e2c5c82b0d00d6fcbf/6301f53f-f01a-48ec-ade9-3af8df7c00ed/Icon-Logo.png?format=1500w"
           width="120"
           className="mx-auto"
           alt="Demo"
@@ -111,7 +111,7 @@ export default function HostedPathwayStory() {
       </div>
       <button
         type="submit"
-        className={`bg-[#7A5AF8] hover:bg-[#7A5AF8]/[0.9] inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-[#7A5AF8] disabled:cursor-not-allowed`}
+        className={`bg-[#9f7f00] hover:bg-[#9f7f00]/[0.9] inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-[#9f7f00] disabled:cursor-not-allowed`}
       >
         Get Started
       </button>
@@ -127,7 +127,7 @@ HostedPathwayStory.getLayout = function getLayout(page: ReactNode) {
       description="Send your clients to an Awell hosted page to complete an onboarding flow or simple pathway."
       docsUrl="#"
       codeUrl="#"
-      browserUrl="https://noala.co/"
+      browserUrl="https://iconhealthco.com/"
     >
       {page}
     </DemoLayout>
