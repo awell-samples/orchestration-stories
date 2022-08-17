@@ -1,0 +1,138 @@
+import { InformationCircleIcon } from '@heroicons/react/outline'
+import { useState } from 'react'
+
+import { Header } from '@/components/Layouts/atoms'
+import { SEO } from '@/components/SEO'
+import { useClipboard } from '@/hooks/useClipboard'
+
+export default function CreateDemoPage() {
+  const [customerName, setCustomerName] = useState('')
+  const [customerLogoUrl, setCustomerLogoUrl] = useState('')
+  const [customerColor, setCustomerColor] = useState('')
+  const [urlQuery, setUrlQuery] = useState('')
+
+  const { copyFn } = useClipboard()
+
+  const onGenerate = () => {
+    const query = `?customerName=${customerName}&customerLogoUrl=${customerLogoUrl}&customerColor=${customerColor.substring(
+      1
+    )}`
+    setUrlQuery(query)
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <SEO
+        title="Generate branded demo"
+        url=""
+        canonicalUrl=""
+        preventCrawling={true}
+      />
+      <Header
+        title="Helper to create branded demo pages"
+        docsUrl="#"
+        codeUrl="#"
+        description="Easily create demo pages that are branded for the customer."
+      />
+      <div className="bg-slate-100/70 flex flex-col flex-grow">
+        <div className="container my-16">
+          <div className="mt-10 sm:mt-0">
+            <form action="#" method="POST">
+              <div className="shadow overflow-hidden sm:rounded-md">
+                <div className="px-4 py-5 bg-white sm:p-6">
+                  <div className="flex flex-col gap-y-8">
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Customer name
+                      </label>
+                      <input
+                        type="text"
+                        name="customerName"
+                        id="customerName"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => setCustomerName(e.target.value)}
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Customer logo URL
+                      </label>
+                      <input
+                        type="text"
+                        name="customerLogo"
+                        id="customerLogo"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => setCustomerLogoUrl(e.target.value)}
+                      />
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Customer accent color
+                      </label>
+                      <input
+                        type="text"
+                        name="customerColor"
+                        id="customerColor"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        placeholder="#ffffff"
+                        onChange={(e) => setCustomerColor(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {urlQuery && (
+                  <div className="bg-white px-4 py-3 sm:px-6 pb-8">
+                    <div className="rounded-md bg-blue-50 p-4">
+                      <div className="flex">
+                        <div className="flex-shrink-0">
+                          <InformationCircleIcon
+                            className="h-5 w-5 text-blue-400"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div className="ml-3 flex-1 md:flex md:justify-between">
+                          <p className="text-sm text-blue-700">
+                            A unique URL was generated to render a demo page
+                            with the branding you have defined.
+                          </p>
+                          <p className="mt-3 text-sm md:mt-0 md:ml-6">
+                            <a
+                              href={`/demos/hosted-pathway${urlQuery}`}
+                              className="whitespace-nowrap font-medium text-blue-700 hover:text-blue-600"
+                              onClick={() => copyFn(urlQuery)}
+                            >
+                              Go to demo page{' '}
+                              <span aria-hidden="true">&rarr;</span>
+                            </a>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    onClick={() => onGenerate()}
+                  >
+                    Generate
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

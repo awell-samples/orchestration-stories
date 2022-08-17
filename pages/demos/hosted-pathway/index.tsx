@@ -6,9 +6,34 @@ import { DemoLayout } from '@/components/Layouts/DemoLayout'
 
 export default function HostedPathwayStory() {
   const [sessionStatus, setSessionStatus] = useState('')
+  const [customerName, setCustomerName] = useState('Awell Health')
+  const [customerLogoUrl, setCustomerLogoUrl] = useState(
+    'https://uploads-ssl.webflow.com/6253f4f53000da81712f95c8/6253f71083dfe8797d16e6b2_Awell-logo-svg.svg'
+  )
+  const [customerColor, setCustomerColor] = useState('004ac2')
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search)
+    const customerNameParam = query.get('customerName')
+    const customerLogoUrlParam = query.get('customerLogoUrl')
+    const customerColorParam = query.get('customerColor')
+
+    console.log(customerColorParam)
+    console.log(customerNameParam)
+    console.log(customerLogoUrlParam)
+
+    if (customerNameParam && customerNameParam !== '') {
+      setCustomerName(customerNameParam)
+    }
+
+    if (customerLogoUrlParam && customerLogoUrlParam !== '') {
+      setCustomerLogoUrl(customerLogoUrlParam)
+    }
+
+    if (customerColorParam && customerColorParam !== '') {
+      setCustomerColor(customerColorParam)
+    }
+
     if (query.get('success')) {
       setSessionStatus('success')
     }
@@ -103,15 +128,16 @@ export default function HostedPathwayStory() {
     >
       <div className="mx-auto text-center mb-12">
         <img
-          src="https://images.squarespace-cdn.com/content/v1/610196e2c5c82b0d00d6fcbf/6301f53f-f01a-48ec-ade9-3af8df7c00ed/Icon-Logo.png?format=1500w"
+          src={customerLogoUrl}
           width="120"
           className="mx-auto"
-          alt="Demo"
+          alt={customerName}
         />
       </div>
       <button
         type="submit"
-        className={`bg-[#9f7f00] hover:bg-[#9f7f00]/[0.9] inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-[#9f7f00] disabled:cursor-not-allowed`}
+        className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-slate-200 disabled:cursor-not-allowed`}
+        style={{ backgroundColor: `#${customerColor}` }}
       >
         Get Started
       </button>
@@ -127,7 +153,7 @@ HostedPathwayStory.getLayout = function getLayout(page: ReactNode) {
       description="Send your clients to an Awell hosted page to complete an onboarding flow or simple pathway."
       docsUrl="#"
       codeUrl="#"
-      browserUrl="https://iconhealthco.com/"
+      browserUrl="https://yourdomain.com/"
     >
       {page}
     </DemoLayout>
