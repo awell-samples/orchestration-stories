@@ -57,7 +57,7 @@ export const Header = ({
                 </a>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={`https://developers.awellhealth.com${docsUrl}`}>
                 <a
                   title="View documentation"
@@ -67,7 +67,7 @@ export const Header = ({
                   Read docs
                 </a>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
