@@ -43,7 +43,8 @@ export const Header = ({
           </Link>
         </div>
         <div className="ml-auto">
-          <ul className="grid grid-cols-2 divide-x-2">
+          {/* Add "grid-cols-2 divide-x-2" when adding 2nd button again */}
+          <ul className="grid">
             <li>
               <Link href={codeUrl}>
                 <a
