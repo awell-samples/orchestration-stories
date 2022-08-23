@@ -78,8 +78,8 @@ export const Header = ({
             <p>{description}</p>
           </div>
         )}
-        <Link href="/">
-          <a title="groupBrowse other stories" className="group block mt-2">
+        {/* <Link href="/">
+          <a title="Browse other stories" className="group block mt-2">
             <div className="relative">
               <div className="transition-all absolute -left-5 top-[6px] text-slate-600 group-hover:-left-6 group-hover:text-slate-600">
                 <svg
@@ -103,7 +103,7 @@ export const Header = ({
               </span>
             </div>
           </a>
-        </Link>
+        </Link> */}
       </div>
       {storyConfigInputs && (
         <div className="mt-4 bg-gray-100 rounded-xl">
