@@ -1,8 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
-import { update } from 'lodash'
 
 const client = new ApolloClient({
-  uri: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_URL,
+  uri: '/api/orchestration-proxy',
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
@@ -13,6 +12,7 @@ const client = new ApolloClient({
             keyArgs: false,
             // Concatenate the incoming list items with
             // the existing list items.
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             merge(existing = [], incoming) {
               const updatedResponse = {
                 patients: [...(incoming.patients || [])],

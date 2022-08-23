@@ -18,10 +18,6 @@ export default function HostedPathwayStory() {
     const customerLogoUrlParam = query.get('customerLogoUrl')
     const customerColorParam = query.get('customerColor')
 
-    console.log(customerColorParam)
-    console.log(customerNameParam)
-    console.log(customerLogoUrlParam)
-
     if (customerNameParam && customerNameParam !== '') {
       setCustomerName(customerNameParam)
     }

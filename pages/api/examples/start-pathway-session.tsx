@@ -2,9 +2,10 @@ import type { NextApiRequest, NextApiResponse } from 'next/types'
 
 import { type StartHostedPathwaySessionPayload } from '@/types/generated/api.types'
 
-const AWELL_API_ENDPOINT = process.env.DEVELOPMENT_GRAPHQL_API_URL || ''
-const AWELL_API_KEY = process.env.DEVELOPMENT_SANDBOX_GRAPHQL_API_KEY || ''
-const PATHWAY_DEFINITION_ID = '_cuXJDlNd4S8'
+const AWELL_API_ENDPOINT = process.env.GRAPHQL_API_URL || ''
+const AWELL_API_KEY = process.env.GRAPHQL_API_KEY || ''
+// Onboarding template pathway created in the public tenant on Sandbox
+const PATHWAY_DEFINITION_ID = 'J0oNK2V91RL2'
 
 export default async function handler(
   req: NextApiRequest,
