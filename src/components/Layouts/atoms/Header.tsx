@@ -11,11 +11,9 @@ interface HeaderProps {
 export const Header = ({
   title,
   description,
-  docsUrl,
   codeUrl,
   storyConfigInputs,
 }: HeaderProps) => {
-  console.log(storyConfigInputs)
   return (
     <div className="container my-8">
       <div className="flex items-center">
