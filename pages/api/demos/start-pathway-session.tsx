@@ -31,8 +31,8 @@ export default async function handler(
         variables: {
           input: {
             pathway_definition_id: PATHWAY_DEFINITION_ID,
-            success_url: `${req.headers.origin}/stories/hosted-pathway?success=true`,
-            cancel_url: `${req.headers.origin}/stories/hosted-pathway?canceled=true`,
+            success_url: `${req.headers.origin}/demos/hosted-pathway?success=true`,
+            cancel_url: `${req.headers.origin}/demos/hosted-pathway?canceled=true`,
           },
         },
       })

@@ -57,25 +57,27 @@ export const ComingSoon = () => {
     }
 
     if (apiStatus === 'fail') {
-      ;<div className="max-w-lg mx-auto">
-        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-          <EmojiSadIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
-        </div>
-        <div className="mt-3 text-center sm:mt-5">
-          <h3
-            className="text-lg leading-6 font-medium text-gray-900"
-            id="modal-title"
-          >
-            Something went wrong
-          </h3>
-          <div className="mt-4">
-            <p className="text-base text-gray-600">
-              We had troubles receiving your request for this story. Could you
-              try again?
-            </p>
+      return (
+        <div className="max-w-lg mx-auto">
+          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+            <EmojiSadIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+          </div>
+          <div className="mt-3 text-center sm:mt-5">
+            <h3
+              className="text-lg leading-6 font-medium text-gray-900"
+              id="modal-title"
+            >
+              Something went wrong
+            </h3>
+            <div className="mt-4">
+              <p className="text-base text-gray-600">
+                We had troubles receiving your request for this story. Could you
+                try again?
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      )
     }
   }
 
