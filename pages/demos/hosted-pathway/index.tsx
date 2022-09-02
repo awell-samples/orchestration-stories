@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
 
 import { DemoLayout } from '@/components/Layouts/DemoLayout'
@@ -11,12 +12,18 @@ export default function HostedPathwayStory() {
     'https://uploads-ssl.webflow.com/6253f4f53000da81712f95c8/6253f71083dfe8797d16e6b2_Awell-logo-svg.svg'
   )
   const [customerColor, setCustomerColor] = useState('004ac2')
+  const [apiKey, setApiKey] = useState<null | string>(null)
+  const [pathwayDefinitionId, setPathwayDefinitionId] = useState<null | string>(
+    null
+  )
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search)
     const customerNameParam = query.get('customerName')
     const customerLogoUrlParam = query.get('customerLogoUrl')
     const customerColorParam = query.get('customerColor')
+    const apiKeyParam = query.get('apiKey')
+    const pathwayDefinitionIdParam = query.get('pathwayDefinitionId')
 
     if (customerNameParam && customerNameParam !== '') {
       setCustomerName(customerNameParam)
@@ -28,6 +35,14 @@ export default function HostedPathwayStory() {
 
     if (customerColorParam && customerColorParam !== '') {
       setCustomerColor(customerColorParam)
+    }
+
+    if (apiKeyParam && apiKeyParam !== '') {
+      setApiKey(apiKeyParam)
+    }
+
+    if (pathwayDefinitionIdParam && pathwayDefinitionIdParam !== '') {
+      setPathwayDefinitionId(pathwayDefinitionIdParam)
     }
 
     if (query.get('success')) {
@@ -116,12 +131,36 @@ export default function HostedPathwayStory() {
     )
   }
 
+  if (apiKey === null || pathwayDefinitionId === null) {
+    return (
+      <p>
+        There is an API key and/or pathway definition id missing to run the
+        demo. Please use the{' '}
+        <Link href="/demos/create-demo">
+          <a title="Demo generator" className="text-blue-600 underline">
+            demo generator
+          </a>
+        </Link>{' '}
+        to create a correct demo.
+      </p>
+    )
+  }
+
   return (
     <form
       className="text-center"
       action="/api/demos/start-pathway-session"
       method="POST"
     >
+      <input type="text" id="apiKey" name="apiKey" value={apiKey} hidden />
+      <input
+        type="text"
+        id="pathwayDefinitionId"
+        name="pathwayDefinitionId"
+        value={pathwayDefinitionId}
+        hidden
+      />
+
       <div className="mx-auto text-center mb-12">
         <img
           src={customerLogoUrl}

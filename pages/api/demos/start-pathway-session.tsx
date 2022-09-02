@@ -3,9 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next/types'
 import { type StartHostedPathwaySessionPayload } from '@/types/generated/api.types'
 
 const AWELL_API_ENDPOINT = process.env.GRAPHQL_API_URL || ''
-const AWELL_API_KEY = process.env.GRAPHQL_API_KEY || ''
-// Pathway in Nick's public API tenant (nick+sandboxapitenant@awellhealth.com)
-const PATHWAY_DEFINITION_ID = 'KQTLxMAsXpOU'
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,6 +10,8 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
+      const { apiKey, pathwayDefinitionId } = req.body
+
       const body = JSON.stringify({
         query: `
         mutation StartHostedPathwaySession(
@@ -30,7 +29,7 @@ export default async function handler(
         }`,
         variables: {
           input: {
-            pathway_definition_id: PATHWAY_DEFINITION_ID,
+            pathway_definition_id: pathwayDefinitionId,
             success_url: `${req.headers.origin}/demos/hosted-pathway?success=true`,
             cancel_url: `${req.headers.origin}/demos/hosted-pathway?canceled=true`,
           },
@@ -40,7 +39,7 @@ export default async function handler(
       const session = await fetch(AWELL_API_ENDPOINT, {
         method: 'POST',
         headers: {
-          apiKey: AWELL_API_KEY,
+          apiKey,
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },

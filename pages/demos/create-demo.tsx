@@ -9,6 +9,8 @@ export default function CreateDemoPage() {
   const [customerName, setCustomerName] = useState('')
   const [customerLogoUrl, setCustomerLogoUrl] = useState('')
   const [customerColor, setCustomerColor] = useState('')
+  const [apiKey, setApiKey] = useState('')
+  const [pathwayDefinitionId, setPathwayDefinitionId] = useState('')
   const [urlQuery, setUrlQuery] = useState('')
 
   const { copyFn } = useClipboard()
@@ -16,7 +18,7 @@ export default function CreateDemoPage() {
   const onGenerate = () => {
     const query = `?customerName=${customerName}&customerLogoUrl=${customerLogoUrl}&customerColor=${customerColor.substring(
       1
-    )}`
+    )}&apiKey=${apiKey}&pathwayDefinitionId=${pathwayDefinitionId}`
     setUrlQuery(query)
   }
 
@@ -29,7 +31,7 @@ export default function CreateDemoPage() {
         preventCrawling={true}
       />
       <Header
-        title="Helper to create branded demo pages"
+        title="Helper to create a custom demo for hosted pathway"
         docsUrl="#"
         codeUrl="#"
         description="Easily create demo pages that are branded for the customer."
@@ -43,8 +45,48 @@ export default function CreateDemoPage() {
                   <div className="flex flex-col gap-y-8">
                     <div className="col-span-6 sm:col-span-3">
                       <label
+                        htmlFor="apiKey"
+                        className="block text-sm font-medium text-slate-700"
+                      >
+                        API Key
+                      </label>
+                      <input
+                        type="text"
+                        name="apiKey"
+                        id="apiKey"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        onChange={(e) => setApiKey(e.target.value)}
+                      />
+                      <p className="mt-2 text-sm text-slate-500">
+                        We need the API Key of the tenant you want to demo in to
+                        be able to interact with the Orchestration API. Note,
+                        the demo only works with tenants in our Sandbox
+                        environment.
+                      </p>
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="pathway-definition-id"
+                        className="block text-sm font-medium text-slate-700"
+                      >
+                        Pathway definition id
+                      </label>
+                      <input
+                        type="text"
+                        name="pathway-definition-id"
+                        id="pathway-definition-id"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        onChange={(e) => setPathwayDefinitionId(e.target.value)}
+                      />
+                      <p className="mt-2 text-sm text-slate-500">
+                        The pathway definition id of the pathway you want to
+                        demo in the tenant the API Key is related to.
+                      </p>
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
                         htmlFor="first-name"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-slate-700"
                       >
                         Customer name
                       </label>
@@ -52,14 +94,20 @@ export default function CreateDemoPage() {
                         type="text"
                         name="customerName"
                         id="customerName"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         onChange={(e) => setCustomerName(e.target.value)}
                       />
+                      <p className="mt-2 text-sm text-slate-500">
+                        This only changes branding on the demo page. To change
+                        the branding of the hosted pages, you still have to do
+                        this in the pathway settings of the pathway you
+                        specified above.
+                      </p>
                     </div>
                     <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="first-name"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-slate-700"
                       >
                         Customer logo URL
                       </label>
@@ -67,14 +115,20 @@ export default function CreateDemoPage() {
                         type="text"
                         name="customerLogo"
                         id="customerLogo"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         onChange={(e) => setCustomerLogoUrl(e.target.value)}
                       />
+                      <p className="mt-2 text-sm text-slate-500">
+                        This only changes branding on the demo page. To change
+                        the branding of the hosted pages, you still have to do
+                        this in the pathway settings of the pathway you
+                        specified above.
+                      </p>
                     </div>
                     <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="first-name"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-slate-700"
                       >
                         Customer accent color
                       </label>
@@ -82,10 +136,16 @@ export default function CreateDemoPage() {
                         type="text"
                         name="customerColor"
                         id="customerColor"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         placeholder="#ffffff"
                         onChange={(e) => setCustomerColor(e.target.value)}
                       />
+                      <p className="mt-2 text-sm text-slate-500">
+                        This only changes branding on the demo page. To change
+                        the branding of the hosted pages, you still have to do
+                        this in the pathway settings of the pathway you
+                        specified above.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -102,7 +162,12 @@ export default function CreateDemoPage() {
                         <div className="ml-3 flex-1 md:flex md:justify-between">
                           <p className="text-sm text-blue-700">
                             A unique URL was generated to render a demo page
-                            with the branding you have defined.
+                            with the branding you have defined.{' '}
+                            <strong>
+                              Tip: you can copy this URL and store it somewhere
+                              so you don&apos;t have to refill this form
+                              whenever you need to do the same demo.
+                            </strong>
                           </p>
                           <p className="mt-3 text-sm md:mt-0 md:ml-6">
                             <a
@@ -119,7 +184,7 @@ export default function CreateDemoPage() {
                     </div>
                   </div>
                 )}
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <div className="px-4 py-3 bg-slate-50 text-right sm:px-6">
                   <button
                     type="button"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
