@@ -241,6 +241,22 @@ export const stories: Stories = [
     ],
   },
   {
+    id: 'hosted-pathway-embed',
+    title: 'Awell hosted pathway (embedded)',
+    description:
+      'Keep clients in your environment by embedding the Awell hosted page.',
+    docsUrl: '/awell-orchestration/docs/use-cases/hosted-pathway',
+    codeUrl:
+      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/hosted-pathway-embed/index.tsx',
+    categories: ['Hosted pathway'],
+    operations: [
+      {
+        type: 'MUTATION',
+        operationName: 'startHostedPathwaySession',
+      },
+    ],
+  },
+  {
     id: 'hosted-activity',
     title: 'Awell hosted activity',
     description:
