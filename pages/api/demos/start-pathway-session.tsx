@@ -53,7 +53,7 @@ export default async function handler(
               .startHostedPathwaySession as StartHostedPathwaySessionPayload
         )
 
-      res.redirect(303, session.session_url)
+      res.status(200).send({ sessionUrl: session.session_url })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)

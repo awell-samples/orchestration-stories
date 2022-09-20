@@ -1,6 +1,7 @@
 import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline'
 import { ReactNode, useEffect, useState } from 'react'
 
+import { HostedPageIframe } from '@/components/HostedPageIframe'
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 
 export default function HostedPathwayStory() {
@@ -27,13 +28,7 @@ export default function HostedPathwayStory() {
   }, [])
 
   if (iframeUrl !== '') {
-    return (
-      <iframe
-        src={iframeUrl}
-        className="w-2/3 min-h-[500px] mx-auto"
-        title="Awell Hosted Page"
-      />
-    )
+    return <HostedPageIframe url={iframeUrl} />
   }
 
   if (sessionStatus === 'success') {

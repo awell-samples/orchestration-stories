@@ -3,6 +3,7 @@ import { CheckIcon, ExclamationIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { ReactNode, useEffect, useState } from 'react'
 
+import { HostedPageIframe } from '@/components/HostedPageIframe'
 import { DemoLayout } from '@/components/Layouts/DemoLayout'
 
 export default function HostedPathwayStory() {
@@ -16,6 +17,20 @@ export default function HostedPathwayStory() {
   const [pathwayDefinitionId, setPathwayDefinitionId] = useState<null | string>(
     null
   )
+  const [redirectOrEmbed, setRedirectOrEmbed] = useState('redirect')
+  const [iframeUrl, setIframeUrl] = useState('')
+
+  const onStartSession = async () => {
+    const data = await fetch('/api/demos/start-pathway-session', {
+      method: 'POST',
+    }).then((res) => res.json())
+
+    if (redirectOrEmbed === 'redirect') {
+      window.location.href = data?.sessionUrl || ''
+    }
+
+    setIframeUrl(data?.sessionUrl || '')
+  }
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search)
@@ -24,6 +39,7 @@ export default function HostedPathwayStory() {
     const customerColorParam = query.get('customerColor')
     const apiKeyParam = query.get('apiKey')
     const pathwayDefinitionIdParam = query.get('pathwayDefinitionId')
+    const redirectOrEmbedParam = query.get('redirectOrEmbed')
 
     if (customerNameParam && customerNameParam !== '') {
       setCustomerName(customerNameParam)
@@ -43,6 +59,10 @@ export default function HostedPathwayStory() {
 
     if (pathwayDefinitionIdParam && pathwayDefinitionIdParam !== '') {
       setPathwayDefinitionId(pathwayDefinitionIdParam)
+    }
+
+    if (redirectOrEmbedParam && redirectOrEmbedParam !== '') {
+      setRedirectOrEmbed(redirectOrEmbedParam)
     }
 
     if (query.get('success')) {
@@ -131,6 +151,10 @@ export default function HostedPathwayStory() {
     )
   }
 
+  if (redirectOrEmbed === 'embed' && iframeUrl !== '') {
+    return <HostedPageIframe url={iframeUrl} />
+  }
+
   if (apiKey === null || pathwayDefinitionId === null) {
     return (
       <p>
@@ -147,11 +171,7 @@ export default function HostedPathwayStory() {
   }
 
   return (
-    <form
-      className="text-center"
-      action="/api/demos/start-pathway-session"
-      method="POST"
-    >
+    <form className="text-center">
       <input type="text" id="apiKey" name="apiKey" value={apiKey} hidden />
       <input
         type="text"
@@ -170,7 +190,8 @@ export default function HostedPathwayStory() {
         />
       </div>
       <button
-        type="submit"
+        type="button"
+        onClick={() => onStartSession()}
         className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-slate-200 disabled:cursor-not-allowed`}
         style={{ backgroundColor: `#${customerColor}` }}
       >

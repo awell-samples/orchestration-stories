@@ -11,6 +11,9 @@ export default function CreateDemoPage() {
   const [customerColor, setCustomerColor] = useState('')
   const [apiKey, setApiKey] = useState('')
   const [pathwayDefinitionId, setPathwayDefinitionId] = useState('')
+  const [redirectOrEmbed, setRedirectOrEmbed] = useState<'redirect' | 'embed'>(
+    'redirect'
+  )
   const [urlQuery, setUrlQuery] = useState('')
 
   const { copyFn } = useClipboard()
@@ -18,7 +21,7 @@ export default function CreateDemoPage() {
   const onGenerate = () => {
     const query = `?customerName=${customerName}&customerLogoUrl=${customerLogoUrl}&customerColor=${customerColor.substring(
       1
-    )}&apiKey=${apiKey}&pathwayDefinitionId=${pathwayDefinitionId}`
+    )}&apiKey=${apiKey}&pathwayDefinitionId=${pathwayDefinitionId}&redirectOrEmbed=${redirectOrEmbed}`
     setUrlQuery(query)
   }
 
@@ -145,6 +148,60 @@ export default function CreateDemoPage() {
                         the branding of the hosted pages, you still have to do
                         this in the pathway settings of the pathway you
                         specified above.
+                      </p>
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-slate-700"
+                      >
+                        Redirect or embed?
+                      </label>
+                      <div className="mt-1 space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+                        <div className="flex items-center">
+                          <input
+                            id="redirect"
+                            name="redirect"
+                            type="radio"
+                            checked={redirectOrEmbed === 'redirect'}
+                            className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setRedirectOrEmbed('redirect')
+                              }
+                            }}
+                          />
+                          <label
+                            htmlFor="redirect"
+                            className="ml-3 block text-sm font-medium text-slate-700"
+                          >
+                            Redirect
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            id="embed"
+                            name="embed"
+                            type="radio"
+                            checked={redirectOrEmbed === 'embed'}
+                            className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setRedirectOrEmbed('embed')
+                              }
+                            }}
+                          />
+                          <label
+                            htmlFor="embed"
+                            className="ml-3 block text-sm font-medium text-slate-700"
+                          >
+                            Embed
+                          </label>
+                        </div>
+                      </div>
+                      <p className="mt-2 text-sm text-slate-500">
+                        Redirect to Awell hosted pages or stay in the same
+                        environment via an embed.
                       </p>
                     </div>
                   </div>
