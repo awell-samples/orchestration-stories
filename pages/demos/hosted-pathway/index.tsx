@@ -23,6 +23,13 @@ export default function HostedPathwayStory() {
   const onStartSession = async () => {
     const data = await fetch('/api/demos/start-pathway-session', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        apiKey,
+        pathwayDefinitionId,
+      }),
     }).then((res) => res.json())
 
     if (redirectOrEmbed === 'redirect') {
