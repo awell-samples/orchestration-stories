@@ -33,6 +33,12 @@ export default async function handler(
             pathway_definition_id: PATHWAY_DEFINITION_ID,
             success_url: `${req.headers.origin}/demos/arise/?success=true`,
             cancel_url: `${req.headers.origin}/demos/arise/?canceled=true`,
+            data_points: [
+              {
+                data_point_definition_id: 'OVAHd1KNnRY6',
+                value: 'fake_healthie_user_id',
+              },
+            ],
           },
         },
       })
