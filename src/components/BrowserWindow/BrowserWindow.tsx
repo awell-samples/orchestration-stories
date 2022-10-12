@@ -3,10 +3,12 @@ import { ReactNode } from 'react'
 interface BrowserWindowProps {
   children: ReactNode
   browserUrl?: string
+  browserPadding: boolean
 }
 export const BrowserWindow = ({
   browserUrl = 'yourdomain.com',
   children,
+  browserPadding,
 }: BrowserWindowProps) => {
   return (
     <div className="browserWindow">
@@ -41,7 +43,9 @@ export const BrowserWindow = ({
             </ul>
           </div>
         </div>
-        <div className="browserBody">{children}</div>
+        <div className={`browserBody ${browserPadding ? 'p-8' : ''}`}>
+          {children}
+        </div>
       </div>
     </div>
   )

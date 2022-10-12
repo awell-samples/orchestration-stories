@@ -13,6 +13,7 @@ interface LayoutProps {
   docsUrl: string
   codeUrl: string
   browserUrl: string
+  browserPadding?: boolean
 }
 
 export const DemoLayout = ({
@@ -23,6 +24,7 @@ export const DemoLayout = ({
   codeUrl,
   browserUrl,
   children,
+  browserPadding = true,
 }: LayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -40,7 +42,12 @@ export const DemoLayout = ({
       />
       <div className="bg-slate-100/70 flex flex-col flex-grow">
         <div className="container my-16">
-          <BrowserWindow browserUrl={browserUrl}>{children}</BrowserWindow>
+          <BrowserWindow
+            browserPadding={browserPadding}
+            browserUrl={browserUrl}
+          >
+            {children}
+          </BrowserWindow>
         </div>
       </div>
     </div>

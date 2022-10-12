@@ -131,6 +131,7 @@ HostedPathwayStory.getLayout = function getLayout(page: ReactNode) {
       docsUrl="#"
       codeUrl="#"
       browserUrl="https://wearise.com/"
+      browserPadding={false}
     >
       {page}
     </DemoLayout>
