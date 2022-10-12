@@ -44,5 +44,5 @@
 }
 
 .browserBody {
-  @apply relative h-full p-8 overflow-hidden rounded-lg rounded-b-none;
+  @apply relative h-full overflow-hidden rounded-lg rounded-b-none;
 }

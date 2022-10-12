@@ -108,24 +108,17 @@ export default function HostedPathwayStory() {
   }
 
   return (
-    <form className="text-center">
-      <div className="mx-auto text-center mb-12">
-        <img
-          src="https://uploads-ssl.webflow.com/62a9fa715fba1413c17b2be3/62cb31feb008c03fd1f34aed_lockup.svg"
-          width="120"
-          className="mx-auto"
-          alt="Arise"
-        />
-      </div>
+    <div style={{ position: 'relative' }}>
+      <img src="https://res.cloudinary.com/da7x4rzl4/image/upload/v1665589842/demos/Screenshot_2022-10-12_at_17.50.01.png" />
       <button
         type="button"
         onClick={() => onStartSession()}
-        className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-slate-200 disabled:cursor-not-allowed`}
+        className={`absolute top-[35px] right-[52px] inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-color-slate-200 disabled:cursor-not-allowed`}
         style={{ backgroundColor: `#3a0eed` }}
       >
         Get Started
       </button>
-    </form>
+    </div>
   )
 }
 
