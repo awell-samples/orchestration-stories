@@ -5,7 +5,7 @@ import { type StartHostedPathwaySessionPayload } from '@/types/generated/api.typ
 const AWELL_API_ENDPOINT =
   'https://api.awellhealth.com/orchestration/m2m/graphql'
 const PATHWAY_DEFINITION_ID = '-XRz8Nhlqe54'
-const ARISE_API_KEY = 'LfbozO0FY51Yy6PYI8UpFcxBQxgQ1YW9'
+const ARISE_API_KEY = process.env.ARISE_API_KEY || ''
 
 export default async function handler(
   req: NextApiRequest,
