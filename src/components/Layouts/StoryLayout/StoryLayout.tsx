@@ -10,9 +10,10 @@ import { Header } from '../atoms'
 
 interface LayoutProps {
   children: ReactNode
+  browserPadding?: boolean
 }
 
-export const StoryLayout = ({ children }: LayoutProps) => {
+export const StoryLayout = ({ children, browserPadding }: LayoutProps) => {
   const router = useRouter()
 
   const storyId = router.pathname.split('/').at(-1)
@@ -46,7 +47,9 @@ export const StoryLayout = ({ children }: LayoutProps) => {
       />
       <div className="bg-slate-100/70 flex flex-col flex-grow">
         <div className="container my-16">
-          <BrowserWindow>{children}</BrowserWindow>
+          <BrowserWindow browserPadding={browserPadding}>
+            {children}
+          </BrowserWindow>
         </div>
       </div>
     </div>
