@@ -27,8 +27,10 @@ export enum ActionType {
   ApiCallGraphql = 'API_CALL_GRAPHQL',
   Calculation = 'CALCULATION',
   Checklist = 'CHECKLIST',
+  ClinicalNote = 'CLINICAL_NOTE',
   Form = 'FORM',
   Message = 'MESSAGE',
+  Plugin = 'PLUGIN',
   PushToEmr = 'PUSH_TO_EMR'
 }
 
@@ -68,10 +70,12 @@ export enum ActivityAction {
   Assigned = 'ASSIGNED',
   Complete = 'COMPLETE',
   Computed = 'COMPUTED',
+  Delegated = 'DELEGATED',
   Deliver = 'DELIVER',
   Discarded = 'DISCARDED',
   Failed = 'FAILED',
   FailedToSend = 'FAILED_TO_SEND',
+  Generated = 'GENERATED',
   IsWaitingOn = 'IS_WAITING_ON',
   Postponed = 'POSTPONED',
   Processed = 'PROCESSED',
@@ -104,6 +108,7 @@ export enum ActivityObjectType {
   ApiCall = 'API_CALL',
   Calculation = 'CALCULATION',
   Checklist = 'CHECKLIST',
+  ClinicalNote = 'CLINICAL_NOTE',
   EmrReport = 'EMR_REPORT',
   EmrRequest = 'EMR_REQUEST',
   EvaluatedRule = 'EVALUATED_RULE',
@@ -111,6 +116,8 @@ export enum ActivityObjectType {
   Message = 'MESSAGE',
   Pathway = 'PATHWAY',
   Patient = 'PATIENT',
+  Plugin = 'PLUGIN',
+  PluginAction = 'PLUGIN_ACTION',
   Reminder = 'REMINDER',
   Stakeholder = 'STAKEHOLDER',
   Step = 'STEP',
@@ -263,6 +270,11 @@ export type BaselineInfoPayload = Payload & {
   success: Scalars['Boolean'];
 };
 
+export enum BooleanOperator {
+  And = 'AND',
+  Or = 'OR'
+}
+
 export type BrandingSettings = {
   __typename?: 'BrandingSettings';
   accent_color?: Maybe<Scalars['String']>;
@@ -287,6 +299,48 @@ export type ChecklistPayload = Payload & {
   code: Scalars['String'];
   success: Scalars['Boolean'];
 };
+
+export type ClinicalNotePayload = Payload & {
+  __typename?: 'ClinicalNotePayload';
+  clinical_note: GeneratedClinicalNote;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
+};
+
+export type Condition = {
+  __typename?: 'Condition';
+  id: Scalars['ID'];
+  operand?: Maybe<Operand>;
+  operator?: Maybe<ConditionOperator>;
+  reference?: Maybe<Scalars['String']>;
+  reference_key?: Maybe<Scalars['String']>;
+};
+
+export enum ConditionOperandType {
+  Boolean = 'BOOLEAN',
+  DataSource = 'DATA_SOURCE',
+  Number = 'NUMBER',
+  NumbersArray = 'NUMBERS_ARRAY',
+  String = 'STRING'
+}
+
+export enum ConditionOperator {
+  Contains = 'CONTAINS',
+  DoesNotContain = 'DOES_NOT_CONTAIN',
+  IsAnyOf = 'IS_ANY_OF',
+  IsEmpty = 'IS_EMPTY',
+  IsEqualTo = 'IS_EQUAL_TO',
+  IsGreaterThan = 'IS_GREATER_THAN',
+  IsGreaterThanOrEqualTo = 'IS_GREATER_THAN_OR_EQUAL_TO',
+  IsInRange = 'IS_IN_RANGE',
+  IsLessThan = 'IS_LESS_THAN',
+  IsLessThanOrEqualTo = 'IS_LESS_THAN_OR_EQUAL_TO',
+  IsNoneOf = 'IS_NONE_OF',
+  IsNotEmpty = 'IS_NOT_EMPTY',
+  IsNotEqualTo = 'IS_NOT_EQUAL_TO',
+  IsNotTrue = 'IS_NOT_TRUE',
+  IsTrue = 'IS_TRUE'
+}
 
 export type CreatePatientInput = {
   address?: InputMaybe<AddressInput>;
@@ -480,7 +534,7 @@ export type FilterPatients = {
 
 export type Form = {
   __typename?: 'Form';
-  id: Scalars['String'];
+  id: Scalars['ID'];
   questions: Array<Question>;
   title: Scalars['String'];
 };
@@ -506,6 +560,34 @@ export type FormattedText = {
   __typename?: 'FormattedText';
   content: TranslatedText;
   format: Scalars['String'];
+};
+
+export type FormsPayload = Payload & {
+  __typename?: 'FormsPayload';
+  code: Scalars['String'];
+  forms?: Maybe<Array<Form>>;
+  success: Scalars['Boolean'];
+};
+
+export type GeneratedClinicalNote = {
+  __typename?: 'GeneratedClinicalNote';
+  context: Array<GeneratedClinicalNoteContextField>;
+  id: Scalars['ID'];
+  narratives: Array<GeneratedClinicalNoteNarrative>;
+};
+
+export type GeneratedClinicalNoteContextField = {
+  __typename?: 'GeneratedClinicalNoteContextField';
+  key: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type GeneratedClinicalNoteNarrative = {
+  __typename?: 'GeneratedClinicalNoteNarrative';
+  body: Scalars['String'];
+  id: Scalars['ID'];
+  key: Scalars['String'];
+  title: Scalars['String'];
 };
 
 export type HostedSession = {
@@ -764,6 +846,12 @@ export type NumberArrayFilter = {
   in?: InputMaybe<Array<Scalars['Float']>>;
 };
 
+export type Operand = {
+  __typename?: 'Operand';
+  type: ConditionOperandType;
+  value: Scalars['String'];
+};
+
 export type Option = {
   __typename?: 'Option';
   id: Scalars['ID'];
@@ -947,9 +1035,11 @@ export type Query = {
   calculationAction: ActionPayload;
   calculationResults: CalculationResultsPayload;
   checklist: ChecklistPayload;
+  clinicalNote: ClinicalNotePayload;
   emrReport: EmrReportPayload;
   form: FormPayload;
   formResponse: FormResponsePayload;
+  forms: FormsPayload;
   hostedSession: HostedSessionPayload;
   hostedSessionActivities: HostedSessionActivitiesPayload;
   message: MessagePayload;
@@ -1015,6 +1105,11 @@ export type QueryChecklistArgs = {
 };
 
 
+export type QueryClinicalNoteArgs = {
+  id: Scalars['String'];
+};
+
+
 export type QueryEmrReportArgs = {
   id: Scalars['String'];
 };
@@ -1028,6 +1123,12 @@ export type QueryFormArgs = {
 export type QueryFormResponseArgs = {
   activity_id: Scalars['String'];
   pathway_id: Scalars['String'];
+};
+
+
+export type QueryFormsArgs = {
+  pathway_definition_id: Scalars['String'];
+  release_id?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1135,6 +1236,7 @@ export type Question = {
   options?: Maybe<Array<Option>>;
   questionConfig?: Maybe<QuestionConfig>;
   questionType?: Maybe<QuestionType>;
+  rule?: Maybe<Rule>;
   title: Scalars['String'];
   userQuestionType?: Maybe<UserQuestionType>;
 };
@@ -1218,6 +1320,14 @@ export type RetryWebhookCallPayload = Payload & {
   code: Scalars['String'];
   success: Scalars['Boolean'];
   webhook_call: WebhookCall;
+};
+
+export type Rule = {
+  __typename?: 'Rule';
+  boolean_operator: BooleanOperator;
+  conditions: Array<Condition>;
+  definition_id?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
 };
 
 export type SaveBaselineInfoInput = {
