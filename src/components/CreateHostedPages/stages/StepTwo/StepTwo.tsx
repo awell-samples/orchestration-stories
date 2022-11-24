@@ -31,10 +31,6 @@ export const StepTwo = () => {
     })()
   }
 
-  if (loading) {
-    return <p>Loading</p>
-  }
-
   return (
     <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)}>
       <div
@@ -60,40 +56,46 @@ export const StepTwo = () => {
           supported yet.
         </div>
       </div>
-      <div>
-        <label
-          htmlFor="care_flow"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-          Care flow
-        </label>
-        <select
-          id="care_flow"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          {...register('care_flow', { required: true })}
-          defaultValue={pathwayDefinitionId}
-        >
-          {publishedPathwayDefinitions
-            .filter(
-              (publishedPathway) =>
-                publishedPathway.dataPointDefinitions.length === 0
-            )
-            .map((publishedPathway) => (
-              <option value={publishedPathway.id} key={publishedPathway.id}>
-                {publishedPathway.title}
-              </option>
-            ))}
-        </select>
-        {errors?.care_flow && (
-          <p className="pt-1 text-sm text-red-500">Select a care flow</p>
-        )}
-      </div>
-      <button
-        type="submit"
-        className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-      >
-        Next
-      </button>
+      {loading ? (
+        <p>Loading</p>
+      ) : (
+        <>
+          <div>
+            <label
+              htmlFor="care_flow"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Care flow
+            </label>
+            <select
+              id="care_flow"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              {...register('care_flow', { required: true })}
+              defaultValue={pathwayDefinitionId}
+            >
+              {publishedPathwayDefinitions
+                .filter(
+                  (publishedPathway) =>
+                    publishedPathway.dataPointDefinitions.length === 0
+                )
+                .map((publishedPathway) => (
+                  <option value={publishedPathway.id} key={publishedPathway.id}>
+                    {publishedPathway.title}
+                  </option>
+                ))}
+            </select>
+            {errors?.care_flow && (
+              <p className="pt-1 text-sm text-red-500">Select a care flow</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          >
+            Next
+          </button>
+        </>
+      )}
     </form>
   )
 }
