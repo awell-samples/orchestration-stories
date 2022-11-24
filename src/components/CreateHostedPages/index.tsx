@@ -1,0 +1,1 @@
+export { CreateHostedPages } from './CreateHostedPages'
