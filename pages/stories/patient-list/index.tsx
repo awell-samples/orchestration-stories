@@ -8,6 +8,69 @@ import { ReactNode, useState } from 'react'
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { usePatients } from '@/hooks/awell-orchestration/usePatients'
 
+const generatePagination = (totalPages: number, currentPage: number) => {
+  const pagination = []
+
+  // If there are only 7 pages or less in total, just display all pages without "..."
+  if (totalPages <= 7) {
+    for (let i = 1; i <= totalPages; i++) {
+      pagination.push(i)
+    }
+
+    return pagination
+  }
+  // ELSE display with ...
+  else {
+    // Always print first page button
+    pagination.push(1)
+
+    // Print "..." if currentPage is > 3
+    if (currentPage > 3) {
+      pagination.push('...')
+    }
+
+    // special case where last page is selected...
+    // Without this special case, only 2 buttons would be shown after ... if you were on last page
+    if (currentPage == totalPages) {
+      pagination.push(currentPage - 2)
+    }
+
+    // Print previous number button if currentPage > 2
+    if (currentPage > 2) {
+      pagination.push(currentPage - 1)
+    }
+
+    //Print current page number button as long as it not the first or last page
+    if (currentPage != 1 && currentPage != totalPages) {
+      pagination.push(currentPage)
+    }
+
+    //print next page number button if currentPage < lastPage - 1
+    if (currentPage < totalPages - 1) {
+      console.log('here')
+      pagination.push(currentPage + 1)
+    }
+
+    // special case where first page is selected...
+    // Without this special case, only 2 buttons would be shown before ... if you were on first page
+    if (currentPage == 1) {
+      pagination.push(currentPage + 2)
+    }
+
+    //print "..." if currentPage is < lastPage -2
+    if (currentPage < totalPages - 2) {
+      pagination.push('...')
+    }
+
+    //Always print last page button if there is more than 1 page
+    if (totalPages > 1) {
+      pagination.push(totalPages)
+    }
+
+    return pagination
+  }
+}
+
 export default function PatientListStory() {
   const { pagination, patients, loading, fetchMore } = usePatients()
   const [currentPage, setCurrentPage] = useState(1)
@@ -40,6 +103,8 @@ export default function PatientListStory() {
   }
 
   const totalNbrOfPages = Math.ceil(pagination.total_count / pagination.count)
+  const paginationNumbers = generatePagination(totalNbrOfPages, currentPage)
+  console.log(paginationNumbers)
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -177,17 +242,24 @@ export default function PatientListStory() {
           </div>
           {!loading && (
             <div className="hidden md:-mt-px md:flex">
-              {[...Array(totalNbrOfPages)].map((pageNumber, i) => (
-                <div
-                  key={i + 1}
-                  onClick={() => onPageClick(i + 1)}
-                  className={
-                    currentPage === i + 1
-                      ? 'cursor-pointer border-blue-500 text-blue-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'
-                      : 'cursor-pointer border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'
-                  }
-                >
-                  {i + 1}
+              {paginationNumbers.map((pageNumber, i) => (
+                <div key={i}>
+                  {typeof pageNumber === 'number' ? (
+                    <div
+                      onClick={() => onPageClick(pageNumber)}
+                      className={
+                        currentPage === pageNumber
+                          ? 'cursor-pointer border-blue-500 text-blue-600 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'
+                          : 'cursor-pointer border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium'
+                      }
+                    >
+                      {pageNumber}
+                    </div>
+                  ) : (
+                    <div className="cursor-default border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 pt-4 px-4 inline-flex items-center text-sm font-medium">
+                      ...
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
