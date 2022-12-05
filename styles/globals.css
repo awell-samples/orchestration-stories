@@ -9,4 +9,6 @@
 @import './components/browserWindow.css';
 
 @import 'tailwindcss/utilities';
+
 /** Import custom css utilities here **/
+@import '../node_modules/@awell_health/ui-library/dist/index.css';

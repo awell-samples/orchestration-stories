@@ -1,65 +1,22 @@
-import { useForm } from 'react-hook-form'
+import { LongTextField } from '@awell_health/ui-library'
+import { useState } from 'react'
 
-import { useFormActivityContext } from '../../../../../contexts/FormActivityContext'
-import { type Question } from '../../../../../types/generated/api.types'
-import { KioskButton } from '../../../../Button/variants'
-import { Label } from '../Atoms'
+import { type Question } from '@/types/generated/api.types'
 
 interface LongTextProps {
   question: Question
 }
 
 export const LongText = ({ question }: LongTextProps) => {
-  const { goToNextQuestion, appendFormData } = useFormActivityContext()
-
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = useForm({ mode: 'all' })
-
-  const onQuestionSubmit = () => {
-    handleSubmit(async (data) => {
-      appendFormData(data)
-      goToNextQuestion()
-    })()
-  }
+  const [value, setValue] = useState('')
 
   return (
-    <div className="grow flex flex-col">
-      <form
-        className="grow flex flex-col"
-        onSubmit={handleSubmit(onQuestionSubmit)}
-      >
-        <div className="container grow">
-          <Label
-            htmlFor={question.id}
-            label={question.title}
-            mandatory={question.questionConfig?.mandatory}
-          />
-          <div className="my-4">
-            <textarea
-              {...register(question.id, {
-                required: question.questionConfig?.mandatory,
-              })}
-              id={question.id}
-              rows={3}
-              className="shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md"
-            />
-            {errors?.[question.id] && (
-              <p className="text-red-500">{question.title} is required</p>
-            )}
-          </div>
-        </div>
-        <div className="">
-          <KioskButton
-            label="Next"
-            type="submit"
-            color="blue"
-            disabled={false}
-          />
-        </div>
-      </form>
-    </div>
+    <LongTextField
+      onChange={(e) => setValue(e.target.value)}
+      label={question.title}
+      id={question.id}
+      value={value}
+      mandatory={question.questionConfig?.mandatory}
+    />
   )
 }

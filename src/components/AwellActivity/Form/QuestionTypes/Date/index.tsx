@@ -1,1 +1,1 @@
-export { Date } from './Date'
+export { DateComponent } from './Date'

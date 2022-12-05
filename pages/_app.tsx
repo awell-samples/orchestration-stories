@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
+import { ThemeProvider } from '@awell_health/ui-library'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import type { NextPage } from 'next/types'
@@ -31,25 +32,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           href="/awell-webclip.png"
         />
       </Head>
-      {/* <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-      />
-
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
-                `}
-      </Script> */}
-
-      <ApolloProvider client={client}>
-        {getLayout(<Component {...pageProps} />)}
-      </ApolloProvider>
+      <ThemeProvider accentColor="#004ac2">
+        <ApolloProvider client={client}>
+          {getLayout(<Component {...pageProps} />)}
+        </ApolloProvider>
+      </ThemeProvider>
     </>
   )
 }

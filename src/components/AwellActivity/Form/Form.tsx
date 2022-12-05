@@ -13,11 +13,11 @@ import { KioskButton } from '../../Button/variants'
 import { FormSkeleton } from '../../Skeleton'
 import {
   Boolean,
-  Date,
-  Description,
+  DateComponent,
+  DescriptionComponent,
   LongText,
   MultipleSelect,
-  Number,
+  NumberComponent,
   ShortText,
   SingleSelect,
   Slider,
@@ -40,11 +40,11 @@ const Question = ({
   const renderQuestion = () => {
     switch (questionObject.userQuestionType) {
       case 'NUMBER':
-        return <Number question={questionObject} />
+        return <NumberComponent question={questionObject} />
       case 'LONG_TEXT':
         return <LongText question={questionObject} />
       case 'DATE':
-        return <Date question={questionObject} />
+        return <DateComponent question={questionObject} />
       case 'MULTIPLE_CHOICE':
         return <SingleSelect question={questionObject} />
       case 'YES_NO':
@@ -54,7 +54,7 @@ const Question = ({
       case 'SLIDER':
         return <Slider question={questionObject} />
       case 'DESCRIPTION':
-        return <Description question={questionObject} />
+        return <DescriptionComponent question={questionObject} />
       case 'MULTIPLE_SELECT':
         return <MultipleSelect question={questionObject} />
       default:
