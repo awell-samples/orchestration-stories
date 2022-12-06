@@ -8,11 +8,11 @@ interface SingleSelectProps {
 }
 
 export const SingleSelect = ({ question }: SingleSelectProps) => {
-  //@ts-expect-error fix types
-  const [value, setValue] = useState<Option>(question.options[0])
+  const [value, setValue] = useState<Option | null>(null)
 
   return (
     <SingleChoiceQuestion
+      questionId={question.id}
       label={question.title}
       options={question.options || []}
       onChange={(data) => setValue(data)}

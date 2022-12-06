@@ -17,6 +17,7 @@ export const MultipleSelect = ({ question }: MultipleSelectProps) => {
       onChange={(data) => setValue(data)}
       values={value}
       mandatory={question.questionConfig?.mandatory}
+      questionId={question.id}
     />
   )
 }

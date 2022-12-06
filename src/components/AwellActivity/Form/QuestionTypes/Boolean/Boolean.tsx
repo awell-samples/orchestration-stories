@@ -8,11 +8,7 @@ interface BooleanProps {
 }
 
 export const Boolean = ({ question }: BooleanProps) => {
-  const [value, setValue] = useState<Option>({
-    id: `${question.id}-yes`,
-    value: 1,
-    label: 'yes',
-  })
+  const [value, setValue] = useState<Option | null>(null)
 
   const options = [
     { id: `${question.id}-yes`, value: 1, label: 'yes' },
@@ -26,6 +22,7 @@ export const Boolean = ({ question }: BooleanProps) => {
       onChange={(data) => setValue(data)}
       value={value}
       mandatory={question.questionConfig?.mandatory}
+      questionId={question.id}
     />
   )
 }
