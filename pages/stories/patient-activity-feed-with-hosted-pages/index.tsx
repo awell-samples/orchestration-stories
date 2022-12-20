@@ -27,8 +27,8 @@ const PatientPathwayActivityList: FC<{ pathwayId: string }> = ({
     const session = await startHostedActivitySession({
       stakeholderId,
       pathwayId,
-      successUrl: `http://localhost:3000/stories/patient-activity-feed-with-hosted-pages?success=true&pathwayId=${pathwayId}`,
-      cancelUrl: `http://localhost:3000/stories/patient-activity-feed-with-hosted-pages?canceled=true&pathwayId=${pathwayId}`,
+      successUrl: `https://orchestration-stories.vercel.app/stories/patient-activity-feed-with-hosted-pages?success=true&pathwayId=${pathwayId}`,
+      cancelUrl: `https://orchestration-stories.vercel.app/stories/patient-activity-feed-with-hosted-pages?canceled=true&pathwayId=${pathwayId}`,
     })
 
     window.location.href = session.session_url || ''
