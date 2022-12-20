@@ -9,7 +9,9 @@ export const PATHWAY_ACTIVITIES = gql`
         stream_id
         status
         date
+        isUserActivity
         subject {
+          id
           type
           name
         }

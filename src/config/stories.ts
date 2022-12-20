@@ -272,4 +272,24 @@ export const stories: Stories = [
       },
     ],
   },
+  {
+    id: 'patient-activity-feed-with-hosted-pages',
+    title: 'Patient activity feed with Awell Hosted Pages',
+    description:
+      'Render an activity feed or todo list for patients but use Awell Hosted Pages to interact with activities',
+    docsUrl: '#',
+    codeUrl:
+      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/patient-activity-feed-with-hosted-pages/index.tsx',
+    categories: ['Pathway', 'Activities', 'Hosted activity'],
+    operations: [
+      {
+        type: 'MUTATION',
+        operationName: 'myPendingActivities',
+      },
+      {
+        type: 'MUTATION',
+        operationName: 'startHostedActivitySession',
+      },
+    ],
+  },
 ]

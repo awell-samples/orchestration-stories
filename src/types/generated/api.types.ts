@@ -369,7 +369,11 @@ export type DataPointDefinition = {
   category: DataPointSourceType;
   id: Scalars['ID'];
   key: Scalars['String'];
+  /** Additonal context on data point */
+  metadata?: Maybe<Array<DataPointMetaDataItem>>;
   optional?: Maybe<Scalars['Boolean']>;
+  /** Personally identifiable information */
+  pii?: Maybe<Scalars['Boolean']>;
   possibleValues?: Maybe<Array<DataPointPossibleValue>>;
   range?: Maybe<Range>;
   title: Scalars['String'];
@@ -379,6 +383,12 @@ export type DataPointDefinition = {
 
 export type DataPointInput = {
   data_point_definition_id: Scalars['String'];
+  value: Scalars['String'];
+};
+
+export type DataPointMetaDataItem = {
+  __typename?: 'DataPointMetaDataItem';
+  key: Scalars['String'];
   value: Scalars['String'];
 };
 

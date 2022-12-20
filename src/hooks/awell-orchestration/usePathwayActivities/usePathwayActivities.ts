@@ -7,7 +7,7 @@ interface UseBaselineInfoHook {
   loading: boolean
   startPolling: (pollInterval: number) => void
   stopPolling: () => void
-  activities?: Array<Activity>
+  activities: Array<Activity>
 }
 
 export const usePathwayActivities = (
@@ -24,10 +24,10 @@ export const usePathwayActivities = (
 
   if (error) {
     console.log(error)
-    return { loading: false, startPolling, stopPolling }
+    return { activities: [], loading: false, startPolling, stopPolling }
   }
   if (loading) {
-    return { loading: true, startPolling, stopPolling }
+    return { activities: [], loading: true, startPolling, stopPolling }
   }
 
   /**
