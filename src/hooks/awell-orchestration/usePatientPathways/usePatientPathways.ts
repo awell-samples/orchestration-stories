@@ -16,7 +16,7 @@ export const usePatientPathways = ({
   status = [],
 }: {
   patientId: string
-  status?: string[]
+  status?: Array<PathwayStatus>
 }): UsePatientPathwaysHook => {
   const { data, loading, error } = useQuery(GET_PATIENT_PATHWAYS, {
     variables: {
