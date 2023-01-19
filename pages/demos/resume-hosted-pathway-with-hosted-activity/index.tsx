@@ -203,7 +203,7 @@ DemoPage.getLayout = function getLayout(page: ReactNode) {
       slug="hosted-pathway"
       description="Open Awell Hosted Pages for a pathway that was already started via the Hosted Pathway integration. "
       docsUrl="#"
-      codeUrl="#"
+      codeUrl="https://github.com/awell-health/orchestration-stories/blob/main/pages/demos/resume-hosted-pathway-with-hosted-activity/index.tsx"
       browserUrl="https://yourdomain.com/"
     >
       {page}
