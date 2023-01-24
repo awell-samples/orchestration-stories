@@ -49,7 +49,7 @@ export const StepOne = () => {
         >
           Environment
         </label>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-3">
           <div className="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
             <input
               {...register('environment', { required: true })}
@@ -78,7 +78,22 @@ export const StepOne = () => {
               htmlFor="production"
               className="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Production
+              Prod (EU)
+            </label>
+          </div>
+          <div className="flex items-center pl-4 rounded border border-gray-200 dark:border-gray-700">
+            <input
+              {...register('environment', { required: true })}
+              id="production_us"
+              value="production_us"
+              type="radio"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              htmlFor="production_us"
+              className="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Prod (US)
             </label>
           </div>
         </div>
@@ -163,7 +178,7 @@ export const StepOne = () => {
       </button>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
         <a
-          href="#"
+          href="https://developers.awellhealth.com/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages"
           className="font-medium text-primary-600 hover:underline dark:text-primary-500"
         >
           What are hosted pages?

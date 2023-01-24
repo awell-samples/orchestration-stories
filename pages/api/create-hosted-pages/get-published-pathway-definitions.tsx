@@ -10,10 +10,24 @@ export default async function handler(
     try {
       const { apiKey, environment } = req.body
 
-      const AWELL_API_ENDPOINT =
-        environment === 'sandbox'
-          ? 'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql'
-          : 'https://api.awellhealth.com/orchestration/m2m/graphql'
+      let AWELL_API_ENDPOINT = ''
+
+      switch (environment) {
+        case 'sandbox':
+          AWELL_API_ENDPOINT =
+            'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql'
+          break
+        case 'production':
+          AWELL_API_ENDPOINT =
+            'https://api.awellhealth.com/orchestration/m2m/graphql'
+          break
+        case 'production_us':
+          AWELL_API_ENDPOINT =
+            'https://api.us.awellhealth.com/orchestration/m2m/graphql'
+          break
+        default:
+          break
+      }
 
       const body = JSON.stringify({
         query: `

@@ -1,15 +1,17 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 
+type EnvironmentType = 'sandbox' | 'production' | 'production_us'
+
 interface CreateHostedPagesContextStateType {
   currentStage: number
   goToNextStage: () => void
   goToPreviousStage: () => void
   goToStage: (stage: number) => void
   apiKey: string
-  environment: 'sandbox' | 'production'
+  environment: EnvironmentType
   pathwayDefinitionId: string
   setApiKey: (apiKey: string) => void
-  setEnvironment: (environment: 'sandbox' | 'production') => void
+  setEnvironment: (environment: EnvironmentType) => void
   setPathwayDefinitionId: (pathwayDefinitionId: string) => void
   reset: () => void
 }
