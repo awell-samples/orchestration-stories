@@ -93,11 +93,21 @@ export const StepTwo = () => {
               defaultValue={pathwayDefinitionId}
             >
               <option value="">Select a care flow</option>
-              {publishedPathwayDefinitions.sort().map((publishedPathway) => (
-                <option value={publishedPathway.id} key={publishedPathway.id}>
-                  {publishedPathway.title}
-                </option>
-              ))}
+              {publishedPathwayDefinitions
+                .sort((a, b) => {
+                  const pathwayDefA = a.title.toUpperCase()
+                  const pathwayDefB = b.title.toUpperCase()
+                  return pathwayDefA < pathwayDefB
+                    ? -1
+                    : pathwayDefA > pathwayDefB
+                    ? 1
+                    : 0
+                })
+                .map((publishedPathway) => (
+                  <option value={publishedPathway.id} key={publishedPathway.id}>
+                    {publishedPathway.title}
+                  </option>
+                ))}
             </select>
             {errors?.care_flow && (
               <p className="pt-1 text-sm text-red-500">Select a care flow</p>
