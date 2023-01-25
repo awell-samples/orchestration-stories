@@ -93,7 +93,7 @@ export const StepTwo = () => {
               defaultValue={pathwayDefinitionId}
             >
               <option value="">Select a care flow</option>
-              {publishedPathwayDefinitions.map((publishedPathway) => (
+              {publishedPathwayDefinitions.sort().map((publishedPathway) => (
                 <option value={publishedPathway.id} key={publishedPathway.id}>
                   {publishedPathway.title}
                 </option>
