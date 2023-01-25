@@ -8,7 +8,8 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     try {
-      const { apiKey, environment, pathwayDefinitionId } = req.body
+      const { apiKey, environment, pathwayDefinitionId, baselineDataPoints } =
+        req.body
 
       let AWELL_API_ENDPOINT = ''
 
@@ -49,6 +50,7 @@ export default async function handler(
             pathway_definition_id: pathwayDefinitionId,
             success_url: `${req.headers.origin}/my-hosted-pages/success`,
             cancel_url: `${req.headers.origin}/my-hosted-pages/cancel`,
+            data_points: baselineDataPoints,
           },
         },
       })
@@ -70,7 +72,10 @@ export default async function handler(
               .startHostedPathwaySession as StartHostedPathwaySessionPayload
         )
 
-      res.status(200).send({ sessionUrl: session.session_url })
+      res.status(200).send({
+        sessionUrl: session.session_url,
+        pathwayId: session.pathway_id,
+      })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       res.status(err.statusCode || 500).json(err.message)

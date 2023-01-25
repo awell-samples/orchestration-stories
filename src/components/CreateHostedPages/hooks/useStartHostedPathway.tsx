@@ -1,24 +1,27 @@
+import { DataPointInput } from '@/types/generated/api.types'
+
+type StartHostedPathwayFunction = ({
+  apiKey,
+  environment,
+  pathwayDefinitionId,
+  baselineDataPoints,
+}: {
+  apiKey: string
+  environment: string
+  pathwayDefinitionId: string
+  baselineDataPoints: Array<DataPointInput>
+}) => Promise<{ sessionUrl: string | null; pathwayId?: string | null }>
+
 interface UseStartHostedPathway {
-  startHostedPathway: ({
-    apiKey,
-    environment,
-    pathwayDefinitionId,
-  }: {
-    apiKey: string
-    environment: string
-    pathwayDefinitionId: string
-  }) => Promise<string>
+  startHostedPathway: StartHostedPathwayFunction
 }
 
 export const useStartHostedPathway = (): UseStartHostedPathway => {
-  const startHostedPathway = async ({
+  const startHostedPathway: StartHostedPathwayFunction = async ({
     apiKey,
     environment,
     pathwayDefinitionId,
-  }: {
-    apiKey: string
-    environment: string
-    pathwayDefinitionId: string
+    baselineDataPoints,
   }) => {
     const success = await fetch(
       '/api/create-hosted-pages/start-hosted-pathway-session',
@@ -31,18 +34,28 @@ export const useStartHostedPathway = (): UseStartHostedPathway => {
           apiKey,
           environment,
           pathwayDefinitionId,
+          baselineDataPoints,
         }),
       }
     )
       .then(async (res) => {
         if (res.ok) {
           const resJson = await res.json()
-          return resJson?.sessionUrl || false
+          return {
+            sessionUrl: resJson?.sessionUrl,
+            pathwayId: resJson?.pathwayId,
+          }
         }
-        return false
+        return {
+          sessionUrl: null,
+          pathwayId: null,
+        }
       })
       .catch(() => {
-        return false
+        return {
+          sessionUrl: null,
+          pathwayId: null,
+        }
       })
 
     return success

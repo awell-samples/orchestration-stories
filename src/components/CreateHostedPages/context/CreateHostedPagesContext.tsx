@@ -1,32 +1,34 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 
+import { DataPointInput } from '@/types/generated/api.types'
+
 type EnvironmentType = 'sandbox' | 'production' | 'production_us'
 
 interface CreateHostedPagesContextStateType {
   currentStage: number
   goToNextStage: () => void
-  goToPreviousStage: () => void
-  goToStage: (stage: number) => void
   apiKey: string
   environment: EnvironmentType
   pathwayDefinitionId: string
   setApiKey: (apiKey: string) => void
   setEnvironment: (environment: EnvironmentType) => void
   setPathwayDefinitionId: (pathwayDefinitionId: string) => void
+  baselineDataPoints: Array<DataPointInput>
+  setBaselineDataPoints: (baselineDatapoints: Array<DataPointInput>) => void
   reset: () => void
 }
 
 const initialState: CreateHostedPagesContextStateType = {
   currentStage: 0,
   goToNextStage: () => null,
-  goToPreviousStage: () => null,
-  goToStage: () => null,
   apiKey: '',
   environment: 'sandbox',
   pathwayDefinitionId: '',
   setApiKey: () => null,
   setEnvironment: () => null,
   setPathwayDefinitionId: () => null,
+  baselineDataPoints: [],
+  setBaselineDataPoints: () => null,
   reset: () => null,
 }
 
@@ -41,6 +43,9 @@ export const CreateHostedPagesProvider = ({
   children,
 }: CreateHostedPagesProviderProps) => {
   const [apiKey, setApiKey] = useState(initialState.apiKey)
+  const [baselineDataPoints, setBaselineDataPoints] = useState(
+    initialState.baselineDataPoints
+  )
   const [environment, setEnvironment] = useState(initialState.environment)
   const [pathwayDefinitionId, setPathwayDefinitionId] = useState(
     initialState.pathwayDefinitionId
@@ -51,33 +56,27 @@ export const CreateHostedPagesProvider = ({
     setCurrentStage(currentStage + 1)
   }
 
-  const goToPreviousStage = () => {
-    setCurrentStage(currentStage - 1)
-  }
-
-  const goToStage = (stage: number) => {
-    setCurrentStage(stage)
-  }
-
   const reset = () => {
-    setApiKey('')
+    setCurrentStage(0)
     setEnvironment('sandbox')
+    setApiKey('')
     setPathwayDefinitionId('')
+    setBaselineDataPoints([])
   }
 
   return (
     <CreateHostedPagesContext.Provider
       value={{
         currentStage,
-        goToStage,
         goToNextStage,
-        goToPreviousStage,
         apiKey,
         environment,
         pathwayDefinitionId,
         setApiKey,
         setEnvironment,
         setPathwayDefinitionId,
+        baselineDataPoints,
+        setBaselineDataPoints,
         reset,
       }}
     >

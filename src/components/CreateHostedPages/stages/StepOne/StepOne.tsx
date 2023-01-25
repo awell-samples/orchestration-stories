@@ -176,14 +176,6 @@ export const StepOne = () => {
           <div>Next</div>
         )}
       </button>
-      <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-        <a
-          href="https://developers.awellhealth.com/awell-orchestration/docs/activities/awell-hosted-pages/what-are-awell-hosted-pages"
-          className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-        >
-          What are hosted pages?
-        </a>
-      </p>
     </form>
   )
 }

@@ -40,6 +40,13 @@ export default async function handler(
                     dataPointDefinitions {
                       id
                       key
+                      valueType
+                      category
+                      title
+                      possibleValues {
+                        label
+                        value
+                      }
                     }
                 }
             }
