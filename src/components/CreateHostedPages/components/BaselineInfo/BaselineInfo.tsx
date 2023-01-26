@@ -69,6 +69,12 @@ export const BaselineInfo: FC<BaselineInfoProps> = ({
             required={!dataPoint.optional}
             disabled={!SUPPORTED_INPUT_TYPES.includes(dataPoint.valueType)}
           />
+          {dataPoint.possibleValues && dataPoint.possibleValues.length > 0 && (
+            <p className="pt-2 text-sm text-slate-500">
+              Only the following values are allowed:{' '}
+              {dataPoint.possibleValues.map((value) => value.value).join(',')}
+            </p>
+          )}
           {errors?.data_points?.[dataPoint.id] && (
             <p className="pt-1 text-sm text-red-500">
               {dataPoint.key} is required
