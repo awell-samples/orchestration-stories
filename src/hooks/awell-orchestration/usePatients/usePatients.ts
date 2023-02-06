@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client'
+import { type ApolloQueryResult, useQuery } from '@apollo/client'
 
 import { type User } from '../../../types/generated/api.types'
 import { GET_PATIENTS } from './graphql/GetPatients.graphql'
@@ -11,6 +11,17 @@ interface UsePatientsHook {
   loading: boolean
   patients: User[]
   fetchMore: ({ variables }: { variables: FetchMoreArgs }) => void
+  refetchPatients: (
+    variables?:
+      | Partial<{
+          offset: number
+          count: number
+          sort_field: string
+          sort_direction: string
+          search: string
+        }>
+      | undefined
+  ) => Promise<ApolloQueryResult<unknown>>
   pagination: {
     offset: number
     count: number
@@ -21,7 +32,13 @@ interface UsePatientsHook {
 const COUNT = 10
 
 export const usePatients = (): UsePatientsHook => {
-  const { data, loading, error, fetchMore } = useQuery(GET_PATIENTS, {
+  const {
+    data,
+    loading,
+    error,
+    fetchMore,
+    refetch: refetchPatients,
+  } = useQuery(GET_PATIENTS, {
     variables: {
       offset: 0,
       count: COUNT,
@@ -42,6 +59,7 @@ export const usePatients = (): UsePatientsHook => {
   return {
     loading,
     fetchMore,
+    refetchPatients,
     pagination: {
       offset,
       count: COUNT,

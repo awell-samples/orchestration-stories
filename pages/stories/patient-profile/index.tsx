@@ -1,6 +1,8 @@
+import { SearchIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { isEmpty, pickBy } from 'lodash'
-import { ReactNode, useState } from 'react'
+import Link from 'next/link'
+import { ReactNode, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
@@ -17,171 +19,11 @@ const tabs = [
   { name: 'Settings', href: '#' },
 ]
 
-const PatientPathwaysTab = () => {
-  const { patientPathways, loading } = usePatientPathways({
-    patientId: 'jR_0mVs2J7glIMhZGexyz',
-  })
-  const { deletePathway } = useDeletePathway()
-
-  const renderStatusBadge = (status: string) => {
-    switch (status) {
-      case 'active':
-        return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
-            <svg
-              className="-ml-0.5 mr-1.5 h-2 w-2 text-blue-400"
-              fill="currentColor"
-              viewBox="0 0 8 8"
-            >
-              <circle cx={4} cy={4} r={3} />
-            </svg>
-            {status}
-          </span>
-        )
-      case 'completed':
-        return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
-            <svg
-              className="-ml-0.5 mr-1.5 h-2 w-2 text-teal-400"
-              fill="currentColor"
-              viewBox="0 0 8 8"
-            >
-              <circle cx={4} cy={4} r={3} />
-            </svg>
-            {status}
-          </span>
-        )
-      case 'stopped':
-        return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800">
-            <svg
-              className="-ml-0.5 mr-1.5 h-2 w-2 text-red-400"
-              fill="currentColor"
-              viewBox="0 0 8 8"
-            >
-              <circle cx={4} cy={4} r={3} />
-            </svg>
-            {status}
-          </span>
-        )
-      default:
-        return (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-slate-100 text-slate-800">
-            <svg
-              className="-ml-0.5 mr-1.5 h-2 w-2 text-slate-400"
-              fill="currentColor"
-              viewBox="0 0 8 8"
-            >
-              <circle cx={4} cy={4} r={3} />
-            </svg>
-            {status}
-          </span>
-        )
-    }
-  }
-
-  const onDeletePathway = async (pathwayId: string) => {
-    const res = await deletePathway(pathwayId)
-    console.log(res)
-  }
-
-  return (
-    <div className="flex flex-col">
-      <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-300">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
-                  >
-                    Pathway
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                  >
-                    Status
-                  </th>
-                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                    <span className="sr-only">Edit</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                {loading
-                  ? [...Array(5)].map((number, i) => (
-                      <tr key={i}>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                          <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
-                        </td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
-                        </td>
-                      </tr>
-                    ))
-                  : patientPathways.map((patientPathway) => (
-                      <tr key={patientPathway.id}>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                          {patientPathway.title}
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {renderStatusBadge(patientPathway.status)}
-                        </td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <button
-                            onClick={() => onDeletePathway(patientPathway.id)}
-                            className="text-red-600 hover:text-red-900"
-                          >
-                            Delete pathway
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const SettingsTab = ({ patientId }: { patientId: string }) => {
-  // const { deletePatient } = useDeletePatient()
-
-  const onDeletePatient = async () => {
-    // const res = await deletePatient(patientId)
-    // console.log(res)
-
-    // Mock patient deletion
-    alert(`Mock delete of patient with id ${patientId} successful.`)
-  }
-
-  return (
-    <div>
-      <button
-        type="button"
-        onClick={() => onDeletePatient()}
-        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:cursor-not-allowed"
-      >
-        Delete patient
-      </button>
-    </div>
-  )
-}
-
-export default function PatientProfileStory() {
+const PatientProfile = ({ patientId }: { patientId: string }) => {
   const [activeTab, setActiveTab] = useState('Profile')
-  const { patient } = usePatient('VddV5qzVd4H7m425RRXV_')
-  const { updatePatient, loading: updatingPatient } = useUpdatePatient(
-    'VddV5qzVd4H7m425RRXV_'
-  )
+  const { patient, loading } = usePatient(patientId)
+  const { updatePatient, loading: updatingPatient } =
+    useUpdatePatient(patientId)
 
   // React hook form to keep track of data in the form
   const { register, handleSubmit } = useForm()
@@ -209,10 +51,45 @@ export default function PatientProfileStory() {
     })()
   }
 
-  if (!patient) {
+  if (loading) {
     return (
       <div className="flex justify-center text-center">
         <Spinner size="lg" message="Loading patient..." />
+      </div>
+    )
+  }
+
+  if (!patient) {
+    return (
+      <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+        <div className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:max-w-md sm:w-full sm:p-6">
+          <div>
+            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+              <SearchIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+            </div>
+            <div className="mt-3 text-center sm:mt-5">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                Patient not found
+              </h3>
+              <div className="mt-2">
+                <p className="text-sm text-gray-500">
+                  We could not find the patient you were looking for. You can
+                  use the patient list to select another patient.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 sm:mt-6">
+            <Link href="/stories/patient-list">
+              <a
+                type="button"
+                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+              >
+                Go to patient list
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
     )
   }
@@ -221,6 +98,16 @@ export default function PatientProfileStory() {
     <div className="px-4 sm:px-6 lg:px-8">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
+          <div className="mb-2">
+            <Link href="/stories/patient-list">
+              <a
+                type="button"
+                className="text-blue-600 text-sm hover:underline"
+              >
+                &#8592; Back to patient list
+              </a>
+            </Link>
+          </div>
           <h1 className="text-xl font-semibold text-gray-900">
             {patient.profile?.first_name || patient.profile?.last_name ? (
               <span>
@@ -430,6 +317,219 @@ export default function PatientProfileStory() {
       </main>
     </div>
   )
+}
+
+const PatientPathwaysTab = () => {
+  const { patientPathways, loading } = usePatientPathways({
+    patientId: 'jR_0mVs2J7glIMhZGexyz',
+  })
+  const { deletePathway } = useDeletePathway()
+
+  const renderStatusBadge = (status: string) => {
+    switch (status) {
+      case 'active':
+        return (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
+            <svg
+              className="-ml-0.5 mr-1.5 h-2 w-2 text-blue-400"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx={4} cy={4} r={3} />
+            </svg>
+            {status}
+          </span>
+        )
+      case 'completed':
+        return (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-green-100 text-green-800">
+            <svg
+              className="-ml-0.5 mr-1.5 h-2 w-2 text-teal-400"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx={4} cy={4} r={3} />
+            </svg>
+            {status}
+          </span>
+        )
+      case 'stopped':
+        return (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-red-100 text-red-800">
+            <svg
+              className="-ml-0.5 mr-1.5 h-2 w-2 text-red-400"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx={4} cy={4} r={3} />
+            </svg>
+            {status}
+          </span>
+        )
+      default:
+        return (
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-slate-100 text-slate-800">
+            <svg
+              className="-ml-0.5 mr-1.5 h-2 w-2 text-slate-400"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx={4} cy={4} r={3} />
+            </svg>
+            {status}
+          </span>
+        )
+    }
+  }
+
+  const onDeletePathway = async (pathwayId: string) => {
+    const res = await deletePathway(pathwayId)
+    console.log(res)
+  }
+
+  return (
+    <div className="flex flex-col">
+      <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+            <table className="min-w-full divide-y divide-gray-300">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                  >
+                    Pathway
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                  >
+                    Status
+                  </th>
+                  <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                    <span className="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 bg-white">
+                {loading
+                  ? [...Array(5)].map((number, i) => (
+                      <tr key={i}>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
+                        </td>
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <div className="animate-pulse h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48"></div>
+                        </td>
+                      </tr>
+                    ))
+                  : patientPathways.map((patientPathway) => (
+                      <tr key={patientPathway.id}>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          {patientPathway.title}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {renderStatusBadge(patientPathway.status)}
+                        </td>
+                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                          <button
+                            onClick={() => onDeletePathway(patientPathway.id)}
+                            className="text-red-600 hover:text-red-900"
+                          >
+                            Delete pathway
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const SettingsTab = ({ patientId }: { patientId: string }) => {
+  // const { deletePatient } = useDeletePatient()
+
+  const onDeletePatient = async () => {
+    // const res = await deletePatient(patientId)
+    // console.log(res)
+
+    // Mock patient deletion
+    alert(`Mock delete of patient with id ${patientId} successful.`)
+  }
+
+  return (
+    <div>
+      <button
+        type="button"
+        onClick={() => onDeletePatient()}
+        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 disabled:cursor-not-allowed"
+      >
+        Delete patient
+      </button>
+    </div>
+  )
+}
+
+export default function PatientProfileStory() {
+  const [patientId, setPatientId] = useState<string | null>(null)
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search)
+
+    const patientIdQueryParam = query.get('patientId')
+
+    if (!isEmpty(patientIdQueryParam)) {
+      setPatientId(patientIdQueryParam)
+    }
+  }, [])
+
+  if (!patientId) {
+    return (
+      <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+        <div className="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden transform transition-all sm:my-8 sm:max-w-md sm:w-full sm:p-6">
+          <div>
+            <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+              <SearchIcon
+                className="h-6 w-6 text-blue-600"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="mt-3 text-center sm:mt-5">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                Select a patient first
+              </h3>
+              <div className="mt-2">
+                <p className="text-sm text-gray-500">
+                  Go to the patient list story and select a patient to open the
+                  profile for.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="mt-5 sm:mt-6">
+            <Link href="/stories/patient-list">
+              <a
+                type="button"
+                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+              >
+                Go to patient list
+              </a>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return <PatientProfile patientId={patientId} />
 }
 
 PatientProfileStory.getLayout = function getLayout(page: ReactNode) {

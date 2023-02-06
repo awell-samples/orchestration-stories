@@ -5,6 +5,7 @@ export const GET_PATIENTS = gql`
     $patient_code: String
     $national_registry_number: String
     $profile_id: [String!]
+    $search: String
     $count: Float!
     $offset: Float!
     $sort_field: String!
@@ -15,6 +16,7 @@ export const GET_PATIENTS = gql`
         patient_code: { eq: $patient_code }
         national_registry_number: { eq: $national_registry_number }
         profile_id: { in: $profile_id }
+        search: { contains: $search }
       }
       pagination: { count: $count, offset: $offset }
       sorting: { field: $sort_field, direction: $sort_direction }

@@ -1,4 +1,5 @@
 import { pickBy } from 'lodash'
+import Link from 'next/link'
 import { ReactNode, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -56,6 +57,16 @@ export default function CreatePatientStory() {
       <div className="max-w-xl mx-auto text-slate-600">
         <div>
           <div>
+            <div className="mb-2">
+              <Link href="/stories/patient-list">
+                <a
+                  type="button"
+                  className="text-blue-600 text-sm hover:underline"
+                >
+                  &#8592; Back to patient list
+                </a>
+              </Link>
+            </div>
             <h3 className="text-lg leading-6 font-medium text-gray-900">
               Patient created
             </h3>
@@ -148,7 +159,22 @@ export default function CreatePatientStory() {
   return (
     <>
       <div className="max-w-xl mx-auto">
-        <div className="mt-5 md:mt-0 md:col-span-2">
+        <div>
+          <div className="mb-2">
+            <Link href="/stories/patient-list">
+              <a
+                type="button"
+                className="text-blue-600 text-sm hover:underline"
+              >
+                &#8592; Back to patient list
+              </a>
+            </Link>
+          </div>
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Create patient
+          </h3>
+        </div>
+        <div className="mt-5 md:col-span-2">
           <form onSubmit={handleSubmit(onCreatePatient)}>
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">

@@ -3,7 +3,7 @@ import {
   ArrowNarrowRightIcon,
 } from '@heroicons/react/solid'
 import Link from 'next/link'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { usePatients } from '@/hooks/awell-orchestration/usePatients'
@@ -47,7 +47,6 @@ const generatePagination = (totalPages: number, currentPage: number) => {
 
     //print next page number button if currentPage < lastPage - 1
     if (currentPage < totalPages - 1) {
-      console.log('here')
       pagination.push(currentPage + 1)
     }
 
@@ -72,8 +71,20 @@ const generatePagination = (totalPages: number, currentPage: number) => {
 }
 
 export default function PatientListStory() {
-  const { pagination, patients, loading, fetchMore } = usePatients()
+  const { pagination, patients, loading, fetchMore, refetchPatients } =
+    usePatients()
   const [currentPage, setCurrentPage] = useState(1)
+  const [searchTerm, setSearchTerm] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (searchTerm !== null) {
+      const delayDebounceFn = setTimeout(() => {
+        refetchPatients({ search: searchTerm ?? '' })
+      }, 750)
+
+      return () => clearTimeout(delayDebounceFn)
+    }
+  }, [searchTerm, refetchPatients])
 
   const loadNewData = (pageNumber: number) => {
     const newOffset = pagination.count * (pageNumber - 1)
@@ -104,7 +115,6 @@ export default function PatientListStory() {
 
   const totalNbrOfPages = Math.ceil(pagination.total_count / pagination.count)
   const paginationNumbers = generatePagination(totalNbrOfPages, currentPage)
-  console.log(paginationNumbers)
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -117,16 +127,22 @@ export default function PatientListStory() {
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <Link href="/stories/create-patient">
-            <a
-              target="_blank"
-              className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto"
-            >
+            <a className="inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto">
               Create patient
             </a>
           </Link>
         </div>
       </div>
       <div className="mt-8 flex flex-col">
+        <div className="mb-4 w-1/4">
+          <input
+            type="text"
+            id="searchTerm"
+            placeholder="Search patient"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          />
+        </div>
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -197,11 +213,10 @@ export default function PatientListStory() {
                             {patient.profile?.email}
                           </td>
                           <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                            <Link href="#">
-                              <a
-                                target="_blank"
-                                className="text-blue-600 hover:text-blue-900"
-                              >
+                            <Link
+                              href={`/stories/patient-profile?patientId=${patient.id}`}
+                            >
+                              <a className="text-blue-600 hover:text-blue-900">
                                 Open profile
                               </a>
                             </Link>
