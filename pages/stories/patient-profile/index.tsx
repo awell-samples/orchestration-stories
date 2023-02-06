@@ -19,7 +19,7 @@ const tabs = [
 
 const PatientPathwaysTab = () => {
   const { patientPathways, loading } = usePatientPathways({
-    patientId: 'vhDI36vTIlmw3trfe7hGG',
+    patientId: 'jR_0mVs2J7glIMhZGexyz',
   })
   const { deletePathway } = useDeletePathway()
 
@@ -178,9 +178,9 @@ const SettingsTab = ({ patientId }: { patientId: string }) => {
 
 export default function PatientProfileStory() {
   const [activeTab, setActiveTab] = useState('Profile')
-  const { patient } = usePatient('bFen_yYlCXm4Gwz_V09ls')
+  const { patient } = usePatient('VddV5qzVd4H7m425RRXV_')
   const { updatePatient, loading: updatingPatient } = useUpdatePatient(
-    'bFen_yYlCXm4Gwz_V09ls'
+    'VddV5qzVd4H7m425RRXV_'
   )
 
   // React hook form to keep track of data in the form

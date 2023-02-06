@@ -27,9 +27,6 @@ const client = new ApolloClient({
       },
     },
   }),
-  headers: {
-    apiKey: process.env.NEXT_PUBLIC_SANDBOX_GRAPHQL_API_KEY || '',
-  },
 })
 
 export default client
