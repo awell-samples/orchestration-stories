@@ -8,8 +8,7 @@ import {
   RangeInput,
   SingleChoiceQuestion,
 } from '@awell_health/ui-library'
-import { EyeIcon } from '@heroicons/react/outline'
-import { debounce, isArray, isEmpty, isNil } from 'lodash'
+import { debounce, isArray, isNil } from 'lodash'
 import { FC, ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   Control,
