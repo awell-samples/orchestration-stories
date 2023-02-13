@@ -11,8 +11,6 @@ interface SliderProps {
 export const Slider = ({ question }: SliderProps) => {
   const [value, setValue] = useState<undefined | number>(undefined)
   const config = question.questionConfig
-  console.log(question)
-  console.log(config)
 
   return (
     <RangeInput

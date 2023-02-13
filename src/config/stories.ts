@@ -90,7 +90,7 @@ export const stories: Stories = [
       '/awell-orchestration/docs/use-cases/custom-integration/stories/conversational-form',
     codeUrl:
       'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/conversational-form/index.tsx',
-    categories: ['Activities', 'Forms'],
+    categories: ['Activities', 'Form'],
     operations: [
       {
         type: 'QUERY',
@@ -107,15 +107,15 @@ export const stories: Stories = [
     ],
   },
   {
-    id: 'form-page',
-    title: 'Display a form page',
+    id: 'form',
+    title: 'Display an Awell form',
     description:
-      'Display a form on a webpage and send the response back to the Awell API.',
+      'Learn how to display an Awell form and evaluate display logic',
     docsUrl:
-      '/awell-orchestration/docs/use-cases/custom-integration/stories/form-page',
+      '/awell-orchestration/docs/use-cases/custom-integration/stories/form',
     codeUrl:
-      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/form-page/index.tsx',
-    categories: ['Activities', 'Forms'],
+      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/form/index.tsx',
+    categories: ['Activities', 'Form'],
     operations: [
       {
         type: 'QUERY',
@@ -289,6 +289,22 @@ export const stories: Stories = [
       {
         type: 'MUTATION',
         operationName: 'startHostedActivitySession',
+      },
+    ],
+  },
+  {
+    id: 'evaluate-display-logic',
+    title: 'Evaluate display logic',
+    description:
+      'Learn how to render a form and evaluate display logic in the front-end',
+    docsUrl: '#',
+    codeUrl:
+      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/evaluate-display-logic/index.tsx',
+    categories: ['Form'],
+    operations: [
+      {
+        type: 'QUERY',
+        operationName: 'form',
       },
     ],
   },

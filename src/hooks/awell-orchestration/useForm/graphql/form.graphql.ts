@@ -7,7 +7,8 @@ export const GET_FORM = gql`
         id
         title
         questions {
-          id
+          id # this changes between versions (=published id) --> this is what evaluates form rules mutation uses
+          # definition_id --> doesn't change between versions
           title
           dataPointValueType
           options {
@@ -29,6 +30,20 @@ export const GET_FORM = gql`
               max_label
               is_value_tooltip_on
               show_min_max_values
+            }
+          }
+          rule {
+            definition_id
+            boolean_operator
+            conditions {
+              id
+              reference
+              reference_key
+              operator
+              operand {
+                type
+                value
+              }
             }
           }
         }

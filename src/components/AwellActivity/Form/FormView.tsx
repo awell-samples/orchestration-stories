@@ -14,6 +14,7 @@ import {
 
 interface FormViewProps {
   form: Form
+  debug?: boolean
 }
 
 const Question = ({ question }: { question: Question }) => {
@@ -49,7 +50,7 @@ const Question = ({ question }: { question: Question }) => {
   return renderQuestion()
 }
 
-export const FormView = ({ form }: FormViewProps) => {
+export const FormView = ({ form, debug = true }: FormViewProps) => {
   return (
     <div>
       <h1 className="text-2xl font-semibold text-gray-900 mb-4">
@@ -57,7 +58,19 @@ export const FormView = ({ form }: FormViewProps) => {
       </h1>
       <div className="flex flex-col space-y-8">
         {form.questions.map((question) => (
-          <Question question={question} key={question.id} />
+          <div key={question.id}>
+            {debug && (
+              <span className="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-800">
+                {question.id}
+              </span>
+            )}
+            <Question question={question} key={question.id} />
+            {debug && (
+              <pre className="mt-2 text-xs">
+                {JSON.stringify(question.rule, null, 2)}
+              </pre>
+            )}
+          </div>
         ))}
       </div>
     </div>

@@ -7,7 +7,7 @@ import type {
 import { EVALUATE_FORM_RULES } from './graphql/EvaluateFormRules.graphql'
 
 export const useEvaluateFormRules = (
-  form_id: string
+  formId: string
 ): [(answers: Array<AnswerInput>) => Promise<Array<QuestionRuleResult>>] => {
   const [evaluateFormRules] = useMutation(EVALUATE_FORM_RULES)
 
@@ -17,7 +17,7 @@ export const useEvaluateFormRules = (
         const { data } = await evaluateFormRules({
           variables: {
             input: {
-              form_id,
+              form_id: formId,
               answers,
             },
           },
