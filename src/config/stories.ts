@@ -85,7 +85,7 @@ export const stories: Stories = [
     id: 'conversational-form',
     title: 'Display a conversational form (questions one-by-one)',
     description:
-      'Display a form in a conversational interface (question-by-question) and send the response back to the Awell API.',
+      'Learn how to display a form in a conversational interface (question-by-question).',
     docsUrl:
       '/awell-orchestration/docs/use-cases/custom-integration/stories/conversational-form',
     codeUrl:
@@ -289,22 +289,6 @@ export const stories: Stories = [
       {
         type: 'MUTATION',
         operationName: 'startHostedActivitySession',
-      },
-    ],
-  },
-  {
-    id: 'evaluate-display-logic',
-    title: 'Evaluate display logic',
-    description:
-      'Learn how to render a form and evaluate display logic in the front-end',
-    docsUrl: '#',
-    codeUrl:
-      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/evaluate-display-logic/index.tsx',
-    categories: ['Form'],
-    operations: [
-      {
-        type: 'QUERY',
-        operationName: 'form',
       },
     ],
   },
