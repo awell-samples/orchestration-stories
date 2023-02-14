@@ -131,7 +131,7 @@ export const Header = ({
                       defaultValue={
                         input?.defaultValue ? input.defaultValue : ''
                       }
-                      className="w-64 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="w-64 shadow-sm focus:ring-blue-600 focus:border-blue-600 block w-full sm:text-sm border-gray-300 rounded-md"
                     />
                   </div>
                 </div>

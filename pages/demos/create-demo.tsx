@@ -57,7 +57,7 @@ export default function CreateDemoPage() {
                         type="text"
                         name="apiKey"
                         id="apiKey"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         onChange={(e) => setApiKey(e.target.value)}
                       />
                       <p className="mt-2 text-sm text-slate-500">
@@ -78,7 +78,7 @@ export default function CreateDemoPage() {
                         type="text"
                         name="pathway-definition-id"
                         id="pathway-definition-id"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         onChange={(e) => setPathwayDefinitionId(e.target.value)}
                       />
                       <p className="mt-2 text-sm text-slate-500">
@@ -97,7 +97,7 @@ export default function CreateDemoPage() {
                         type="text"
                         name="customerName"
                         id="customerName"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         onChange={(e) => setCustomerName(e.target.value)}
                       />
                       <p className="mt-2 text-sm text-slate-500">
@@ -118,7 +118,7 @@ export default function CreateDemoPage() {
                         type="text"
                         name="customerLogo"
                         id="customerLogo"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         onChange={(e) => setCustomerLogoUrl(e.target.value)}
                       />
                       <p className="mt-2 text-sm text-slate-500">
@@ -139,7 +139,7 @@ export default function CreateDemoPage() {
                         type="text"
                         name="customerColor"
                         id="customerColor"
-                        className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
+                        className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-slate-300 rounded-md"
                         placeholder="#ffffff"
                         onChange={(e) => setCustomerColor(e.target.value)}
                       />
@@ -164,7 +164,7 @@ export default function CreateDemoPage() {
                             name="redirect"
                             type="radio"
                             checked={redirectOrEmbed === 'redirect'}
-                            className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                            className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-600"
                             onChange={(e) => {
                               if (e.target.checked) {
                                 setRedirectOrEmbed('redirect')
@@ -184,7 +184,7 @@ export default function CreateDemoPage() {
                             name="embed"
                             type="radio"
                             checked={redirectOrEmbed === 'embed'}
-                            className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                            className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-600"
                             onChange={(e) => {
                               if (e.target.checked) {
                                 setRedirectOrEmbed('embed')
@@ -244,7 +244,7 @@ export default function CreateDemoPage() {
                 <div className="px-4 py-3 bg-slate-50 text-right sm:px-6">
                   <button
                     type="button"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
                     onClick={() => onGenerate()}
                   >
                     Generate

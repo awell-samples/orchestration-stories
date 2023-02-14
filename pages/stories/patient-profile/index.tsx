@@ -83,7 +83,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
             <Link href="/stories/patient-list">
               <a
                 type="button"
-                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:text-sm"
               >
                 Go to patient list
               </a>
@@ -127,7 +127,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
           <select
             id="tabs"
             name="tabs"
-            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm rounded-md"
             defaultValue={activeTab}
             onChange={(e) => onTabSelect(e.target.value)}
           >
@@ -180,7 +180,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   id="first_name"
                   defaultValue={patient.profile?.first_name || ''}
                   {...register('first_name')}
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
 
@@ -196,7 +196,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   id="last_name"
                   defaultValue={patient.profile?.last_name || ''}
                   {...register('last_name')}
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
 
@@ -212,7 +212,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   id="email"
                   defaultValue={patient.profile?.email || ''}
                   {...register('email')}
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
 
@@ -227,7 +227,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   id="country"
                   defaultValue={patient.profile?.address?.country || ''}
                   {...register('address.country')}
-                  className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-600 focus:border-blue-600 sm:text-sm"
                 >
                   <option value="" disabled>
                     Select a country
@@ -250,7 +250,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   defaultValue={patient.profile?.address?.street || ''}
                   {...register('address.street')}
                   id="street-address"
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
 
@@ -266,7 +266,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   defaultValue={patient.profile?.address?.city || ''}
                   {...register('address.city')}
                   id="city"
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
 
@@ -282,7 +282,7 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   defaultValue={patient.profile?.address?.state || ''}
                   {...register('address.state')}
                   id="region"
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
 
@@ -298,14 +298,14 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
                   defaultValue={patient.profile?.address?.zip || ''}
                   {...register('address.zip')}
                   id="postal-code"
-                  className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  className="mt-1 focus:ring-blue-600 focus:border-blue-600 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                 />
               </div>
             </div>
             <div className="mt-4">
               <button
                 type="submit"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:cursor-not-allowed"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed"
               >
                 {updatingPatient ? 'Saving...' : 'Save'}
               </button>
@@ -518,7 +518,7 @@ export default function PatientProfileStory() {
             <Link href="/stories/patient-list">
               <a
                 type="button"
-                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 sm:text-sm"
               >
                 Go to patient list
               </a>
