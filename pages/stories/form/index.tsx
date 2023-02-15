@@ -14,7 +14,6 @@ import { Form } from '@/types/generated/api.types'
 import {
   convertFormErrorsToAwellErrors,
   convertToAwellInput,
-  getInitialValues,
   updateVisibility,
 } from '@/utils/form'
 
@@ -28,7 +27,6 @@ const Form: FC<{ form: Form }> = (form) => {
     handleSubmit,
     formState: { errors },
   } = UseReactHookForm({
-    defaultValues: getInitialValues(form.form.questions),
     shouldUnregister: false,
   })
 
