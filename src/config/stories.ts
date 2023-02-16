@@ -5,7 +5,7 @@ export const stories: Stories = [
     id: 'start-pathway',
     title: 'List of published pathways & start a pathway',
     description:
-      'Display a list of published pathways, select a pathway and start it for an anonymous patient.',
+      'Display a list of published pathway definitions, select a pathway and start it for a patient.',
     docsUrl:
       '/awell-orchestration/docs/use-cases/custom-integration/stories/start-pathway',
     codeUrl:
@@ -47,7 +47,7 @@ export const stories: Stories = [
     id: 'search-patients',
     title: 'Search patients',
     description:
-      'Learn how to create a search on patient code or national registry number',
+      'Learn how to create a search based on patient code or national registry number',
     docsUrl:
       '/awell-orchestration/docs/use-cases/custom-integration/stories/patient-search',
     codeUrl:
@@ -68,7 +68,7 @@ export const stories: Stories = [
     id: 'activity-feed',
     title: 'Create an activity feed',
     description:
-      'Create a chronological activity feed of everything that has happened in a pathway.',
+      'Create a chronological activity feed of everything happening in a pathway.',
     docsUrl:
       '/awell-orchestration/docs/use-cases/custom-integration/stories/activity-feed',
     codeUrl:
@@ -244,7 +244,7 @@ export const stories: Stories = [
     id: 'hosted-pathway-embed',
     title: 'Awell hosted pathway (embedded)',
     description:
-      'Keep clients in your environment by embedding the Awell hosted page.',
+      'Keep users in your environment by embedding Awell Hosted Pages in your app.',
     docsUrl: '/awell-orchestration/docs/use-cases/hosted-pathway',
     codeUrl:
       'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/hosted-pathway-embed/index.tsx',
@@ -276,7 +276,7 @@ export const stories: Stories = [
     id: 'patient-activity-feed-with-hosted-pages',
     title: 'Patient activity feed with Awell Hosted Pages',
     description:
-      'Render an activity feed or todo list for patients but use Awell Hosted Pages to interact with activities',
+      'Render an activity feed for patients and use Awell Hosted Pages to interact with activities',
     docsUrl: '#',
     codeUrl:
       'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/patient-activity-feed-with-hosted-pages/index.tsx',
