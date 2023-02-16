@@ -126,11 +126,9 @@ const Form: FC<{ form: Form }> = (form) => {
             <div key={visibleQuestion.id}>
               <Question
                 question={visibleQuestion}
-                // @ts-expect-error fix typing
                 control={control}
                 getValues={getValues}
                 key={visibleQuestion.id}
-                // @ts-expect-error fix typing
                 errors={convertFormErrorsToAwellErrors(errors)}
               />
             </div>

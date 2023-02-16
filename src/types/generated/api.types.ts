@@ -1295,6 +1295,7 @@ export type QueryWebhookCallsForPathwayDefinitionArgs = {
 export type Question = {
   __typename?: 'Question';
   dataPointValueType?: Maybe<DataPointValueType>;
+  definition_id: Scalars['String'];
   id: Scalars['ID'];
   options?: Maybe<Array<Option>>;
   questionConfig?: Maybe<QuestionConfig>;

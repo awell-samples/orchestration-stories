@@ -2,13 +2,12 @@ import { SearchIcon } from '@heroicons/react/outline'
 import clsx from 'clsx'
 import { isEmpty, pickBy } from 'lodash'
 import Link from 'next/link'
-import { ReactNode, useEffect, useState } from 'react'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { Spinner } from '@/components/Spinner'
 import { useDeletePathway } from '@/hooks/awell-orchestration/useDeletePathway'
-// import { useDeletePatient } from '@/hooks/awell-orchestration/useDeletePatient'
 import { usePatient } from '@/hooks/awell-orchestration/usePatient'
 import { usePatientPathways } from '@/hooks/awell-orchestration/usePatientPathways'
 import { useUpdatePatient } from '@/hooks/awell-orchestration/useUpdatePatient'
@@ -19,7 +18,7 @@ const tabs = [
   { name: 'Settings', href: '#' },
 ]
 
-const PatientProfile = ({ patientId }: { patientId: string }) => {
+const PatientProfile: FC<{ patientId: string }> = ({ patientId }) => {
   const [activeTab, setActiveTab] = useState('Profile')
   const { patient, loading } = usePatient(patientId)
   const { updatePatient, loading: updatingPatient } =
@@ -108,15 +107,22 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
               </a>
             </Link>
           </div>
-          <h1 className="text-xl font-semibold text-gray-900">
-            {patient.profile?.first_name || patient.profile?.last_name ? (
-              <span>
-                {patient.profile?.first_name} {patient.profile?.last_name}
-              </span>
-            ) : (
-              <span>Anonymous</span>
-            )}
-          </h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl font-semibold text-gray-900">
+              {patient.profile?.first_name || patient.profile?.last_name ? (
+                <span>
+                  {patient.profile?.first_name} {patient.profile?.last_name}
+                </span>
+              ) : (
+                <span>Anonymous</span>
+              )}
+            </h1>
+            <Link href={`/stories/start-pathway?patientId=${patientId}`}>
+              <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed">
+                Start pathway
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
       <div className="mt-4">
@@ -312,16 +318,18 @@ const PatientProfile = ({ patientId }: { patientId: string }) => {
             </div>
           </form>
         )}
-        {activeTab === 'Pathways' && <PatientPathwaysTab />}
+        {activeTab === 'Pathways' && (
+          <PatientPathwaysTab patientId={patient.id} />
+        )}
         {activeTab === 'Settings' && <SettingsTab patientId={patient.id} />}
       </main>
     </div>
   )
 }
 
-const PatientPathwaysTab = () => {
+const PatientPathwaysTab: FC<{ patientId: string }> = ({ patientId }) => {
   const { patientPathways, loading } = usePatientPathways({
-    patientId: 'jR_0mVs2J7glIMhZGexyz',
+    patientId,
   })
   const { deletePathway } = useDeletePathway()
 
@@ -454,7 +462,7 @@ const PatientPathwaysTab = () => {
   )
 }
 
-const SettingsTab = ({ patientId }: { patientId: string }) => {
+const SettingsTab: FC<{ patientId: string }> = ({ patientId }) => {
   // const { deletePatient } = useDeletePatient()
 
   const onDeletePatient = async () => {

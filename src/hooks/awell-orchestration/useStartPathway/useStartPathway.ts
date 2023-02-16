@@ -16,6 +16,7 @@ export const useStartPathway = (): UseStartPathwayHook => {
         variables: {
           input,
         },
+        refetchQueries: ['GetPatientPathways'],
       })
       return data.startPathway.pathway_id
     } catch (error) {

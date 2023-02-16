@@ -67,90 +67,27 @@ export default function CreatePatientStory() {
                 </a>
               </Link>
             </div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">
-              Patient created
+            <h3 className="text-center text-lg leading-6 font-medium text-gray-900">
+              Patient created!
             </h3>
-            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-              Patient information below
-            </p>
           </div>
-          <div className="mt-5 border-t border-gray-200">
-            <dl className="sm:divide-y sm:divide-gray-200">
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">
-                  Patient id
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.id}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">Full name</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.first_name ||
-                  createdPatient.profile?.last_name ? (
-                    <span>
-                      {createdPatient.profile?.first_name}{' '}
-                      {createdPatient.profile?.last_name}
-                    </span>
-                  ) : (
-                    <span>Anonymous</span>
-                  )}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">Email</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.email}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">Country</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.address?.country}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">
-                  Street address
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.address?.street}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">City</dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.address?.city}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">
-                  State / Province
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.address?.state}
-                </dd>
-              </div>
-              <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                <dt className="text-sm font-medium text-gray-500">
-                  ZIP / Postal code
-                </dt>
-                <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  {createdPatient.profile?.address?.zip}
-                </dd>
-              </div>
-            </dl>
+
+          <div className="flex justify-center items-center mt-4">
+            <Link
+              href={`/stories/patient-profile?patientId=${createdPatient.id}`}
+            >
+              <a className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed">
+                View patient profile
+              </a>
+            </Link>
+            <button
+              type="button"
+              className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-blue-700 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 disabled:cursor-not-allowed"
+              onClick={() => reset()}
+            >
+              Create new patient
+            </button>
           </div>
-        </div>
-        <div className="mt-4">
-          <button
-            type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:cursor-not-allowed"
-            onClick={() => reset()}
-          >
-            Create new patient
-          </button>
         </div>
       </div>
     )
