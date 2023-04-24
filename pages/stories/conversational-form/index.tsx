@@ -193,6 +193,7 @@ const Form: FC<{ form: Form }> = (form) => {
       ) : (
         <div className="flex flex-col space-y-8">
           <Question
+            // @ts-expect-error fix typing
             question={visibleQuestions?.[current]}
             // @ts-expect-error fix typing
             control={control}

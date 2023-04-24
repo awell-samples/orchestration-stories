@@ -125,6 +125,7 @@ const Form: FC<{ form: Form }> = (form) => {
           {visibleQuestions.map((visibleQuestion) => (
             <div key={visibleQuestion.id}>
               <Question
+                // @ts-expect-error fix typing
                 question={visibleQuestion}
                 control={control}
                 getValues={getValues}
