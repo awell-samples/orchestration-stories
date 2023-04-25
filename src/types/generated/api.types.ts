@@ -72,6 +72,7 @@ export type Activity = {
 
 export enum ActivityAction {
   Activate = 'ACTIVATE',
+  Added = 'ADDED',
   Assigned = 'ASSIGNED',
   Complete = 'COMPLETE',
   Computed = 'COMPUTED',
@@ -157,6 +158,7 @@ export type ActivitySubject = {
 };
 
 export enum ActivitySubjectType {
+  ApiCall = 'API_CALL',
   Awell = 'AWELL',
   Plugin = 'PLUGIN',
   Stakeholder = 'STAKEHOLDER',
@@ -167,6 +169,17 @@ export type ActivityTrack = {
   __typename?: 'ActivityTrack';
   id?: Maybe<Scalars['String']>;
   title: Scalars['String'];
+};
+
+export type AddTrackInput = {
+  pathway_id: Scalars['String'];
+  track_id: Scalars['String'];
+};
+
+export type AddTrackPayload = Payload & {
+  __typename?: 'AddTrackPayload';
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type Address = {
@@ -789,6 +802,7 @@ export type MessagePayload = Payload & {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addTrack: AddTrackPayload;
   completeExtensionActivity: CompleteExtensionActivityPayload;
   createPatient: CreatePatientPayload;
   deletePathway: EmptyPayload;
@@ -809,7 +823,6 @@ export type Mutation = {
   startHostedActivitySessionViaHostedPagesLink: StartHostedActivitySessionPayload;
   startHostedPathwaySession: StartHostedPathwaySessionPayload;
   startPathway: StartPathwayPayload;
-  startTrack: StartTrackPayload;
   stopPathway: EmptyPayload;
   stopTrack: StopTrackPayload;
   submitChecklist: SubmitChecklistPayload;
@@ -817,6 +830,11 @@ export type Mutation = {
   updateBaselineInfo: EmptyPayload;
   updatePatient: UpdatePatientPayload;
   updatePatientLanguage: UpdatePatientLanguagePayload;
+};
+
+
+export type MutationAddTrackArgs = {
+  input: AddTrackInput;
 };
 
 
@@ -918,11 +936,6 @@ export type MutationStartHostedPathwaySessionArgs = {
 
 export type MutationStartPathwayArgs = {
   input: StartPathwayInput;
-};
-
-
-export type MutationStartTrackArgs = {
-  input: StartTrackInput;
 };
 
 
@@ -1660,17 +1673,6 @@ export type StartPathwayInput = {
 export type StartPathwayPayload = {
   __typename?: 'StartPathwayPayload';
   pathway_id: Scalars['String'];
-};
-
-export type StartTrackInput = {
-  pathway_id: Scalars['String'];
-  track_id: Scalars['String'];
-};
-
-export type StartTrackPayload = Payload & {
-  __typename?: 'StartTrackPayload';
-  code: Scalars['String'];
-  success: Scalars['Boolean'];
 };
 
 export type StopPathwayInput = {
