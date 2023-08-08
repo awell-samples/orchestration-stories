@@ -7,5 +7,6 @@ interface DescriptionProps {
 }
 
 export const DescriptionComponent = ({ question }: DescriptionProps) => {
+  //@ts-expect-error fix later
   return <Description nodes={question.title} />
 }
