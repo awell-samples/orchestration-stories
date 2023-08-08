@@ -51,6 +51,8 @@ export type Activity = {
   context?: Maybe<PathwayContext>;
   date: Scalars['String'];
   form?: Maybe<Form>;
+  /** Form display mode can either be conversational (1 question at a time) or regular (all questions at once). Only used in hosted pages for now. */
+  form_display_mode?: Maybe<FormDisplayMode>;
   /** Url for icon, only used by extensions custom actions */
   icon_url?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -278,6 +280,13 @@ export type ApiPathwayContext = {
   start_date?: Maybe<Scalars['String']>;
 };
 
+export type AuditTrail = {
+  __typename?: 'AuditTrail';
+  date: Scalars['SafeDate'];
+  user_email?: Maybe<Scalars['String']>;
+  user_id: Scalars['String'];
+};
+
 export type BaselineDataPoint = {
   __typename?: 'BaselineDataPoint';
   definition: DataPointDefinition;
@@ -304,13 +313,17 @@ export enum BooleanOperator {
 export type BrandingSettings = {
   __typename?: 'BrandingSettings';
   accent_color?: Maybe<Scalars['String']>;
+  /** Auto progress to the next question when using the conversational display mode in Awell Hosted Pages. */
+  hosted_page_auto_progress?: Maybe<Scalars['Boolean']>;
   hosted_page_title?: Maybe<Scalars['String']>;
   logo_url?: Maybe<Scalars['String']>;
 };
 
-export type CalculationResultsPayload = {
+export type CalculationResultsPayload = Payload & {
   __typename?: 'CalculationResultsPayload';
+  code: Scalars['String'];
   result: Array<SingleCalculationResult>;
+  success: Scalars['Boolean'];
 };
 
 export type Checklist = {
@@ -378,6 +391,7 @@ export enum ConditionOperator {
   IsNotEmpty = 'IS_NOT_EMPTY',
   IsNotEqualTo = 'IS_NOT_EQUAL_TO',
   IsNotTrue = 'IS_NOT_TRUE',
+  IsToday = 'IS_TODAY',
   IsTrue = 'IS_TRUE'
 }
 
@@ -614,6 +628,7 @@ export type FilterActivitiesParams = {
   activity_status?: InputMaybe<StringArrayFilter>;
   activity_type?: InputMaybe<StringArrayFilter>;
   pathway_definition_id?: InputMaybe<StringArrayFilter>;
+  pathway_status?: InputMaybe<StringArrayFilter>;
   patient_id?: InputMaybe<TextFilterEquals>;
   stakeholders?: InputMaybe<StringArrayFilter>;
 };
@@ -621,6 +636,10 @@ export type FilterActivitiesParams = {
 export type FilterPathwayDataPointDefinitionsParams = {
   category?: InputMaybe<StringArrayFilter>;
   value_type?: InputMaybe<StringArrayFilter>;
+};
+
+export type FilterPathwayDefinitionsParams = {
+  search?: InputMaybe<TextFilterContains>;
 };
 
 export type FilterPathways = {
@@ -653,6 +672,11 @@ export type Form = {
   release_id: Scalars['String'];
   title: Scalars['String'];
 };
+
+export enum FormDisplayMode {
+  Conversational = 'CONVERSATIONAL',
+  Regular = 'REGULAR'
+}
 
 export type FormPayload = Payload & {
   __typename?: 'FormPayload';
@@ -771,7 +795,7 @@ export type Message = {
   body: Scalars['String'];
   format: MessageFormat;
   id: Scalars['ID'];
-  subject: Scalars['String'];
+  subject?: Maybe<Scalars['String']>;
 };
 
 export type MessageAttachment = {
@@ -1049,6 +1073,15 @@ export type PathwayDataPointDefinitionsPayload = Payload & {
   success: Scalars['Boolean'];
 };
 
+export type PathwayDefinitionDetails = {
+  __typename?: 'PathwayDefinitionDetails';
+  active_careflows?: Maybe<Scalars['Float']>;
+  completed_careflows?: Maybe<Scalars['Float']>;
+  stopped_careflows?: Maybe<Scalars['Float']>;
+  total_careflows?: Maybe<Scalars['Float']>;
+  total_patients?: Maybe<Scalars['Float']>;
+};
+
 export type PathwayPayload = Payload & {
   __typename?: 'PathwayPayload';
   code: Scalars['String'];
@@ -1163,12 +1196,19 @@ export type PluginActionSettingsProperty = {
 export type PublishedPathwayDefinition = {
   __typename?: 'PublishedPathwayDefinition';
   active_activities?: Maybe<Scalars['Float']>;
+  /** Details about the latest pathway definition */
+  all?: Maybe<PathwayDefinitionDetails>;
   cancelled_activities?: Maybe<Scalars['Float']>;
+  created?: Maybe<AuditTrail>;
   /** Starting/baseline data point definitions for the pathway */
   dataPointDefinitions: Array<DataPointDefinition>;
   failed_activities?: Maybe<Scalars['Float']>;
   id: Scalars['ID'];
+  last_updated?: Maybe<AuditTrail>;
+  /** Details about all pathway definitions */
+  latest?: Maybe<PathwayDefinitionDetails>;
   patients_with_pending_activities?: Maybe<Scalars['Float']>;
+  release_date?: Maybe<Scalars['String']>;
   release_id?: Maybe<Scalars['String']>;
   stakeholders_with_pending_activities_list?: Maybe<Array<Scalars['String']>>;
   title: Scalars['String'];
@@ -1181,7 +1221,9 @@ export type PublishedPathwayDefinition = {
 export type PublishedPathwayDefinitionsPayload = Payload & {
   __typename?: 'PublishedPathwayDefinitionsPayload';
   code: Scalars['String'];
+  pagination?: Maybe<PaginationOutput>;
   publishedPathwayDefinitions: Array<PublishedPathwayDefinition>;
+  sorting?: Maybe<SortingOutput>;
   success: Scalars['Boolean'];
 };
 
@@ -1220,6 +1262,7 @@ export type Query = {
   patientPathways: PatientPathwaysPayload;
   patients: PatientsPayload;
   publishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
+  publishedPathwayDefinitionsDashboard: PublishedPathwayDefinitionsPayload;
   scheduledSteps: ScheduledStepsPayload;
   searchPatientsByNationalRegistryNumber: SearchPatientsPayload;
   searchPatientsByPatientCode: SearchPatientsPayload;
@@ -1384,6 +1427,13 @@ export type QueryPatientPathwaysArgs = {
 
 export type QueryPatientsArgs = {
   filters?: InputMaybe<FilterPatients>;
+  pagination?: InputMaybe<PaginationParams>;
+  sorting?: InputMaybe<SortingParams>;
+};
+
+
+export type QueryPublishedPathwayDefinitionsDashboardArgs = {
+  filters?: InputMaybe<FilterPathwayDefinitionsParams>;
   pagination?: InputMaybe<PaginationParams>;
   sorting?: InputMaybe<SortingParams>;
 };
@@ -1670,9 +1720,12 @@ export type StartPathwayInput = {
   patient_id: Scalars['String'];
 };
 
-export type StartPathwayPayload = {
+export type StartPathwayPayload = Payload & {
   __typename?: 'StartPathwayPayload';
+  code: Scalars['String'];
   pathway_id: Scalars['String'];
+  stakeholders: Array<Stakeholder>;
+  success: Scalars['Boolean'];
 };
 
 export type StopPathwayInput = {
@@ -1712,9 +1765,11 @@ export type SubmitChecklistInput = {
   activity_id: Scalars['String'];
 };
 
-export type SubmitChecklistPayload = {
+export type SubmitChecklistPayload = Payload & {
   __typename?: 'SubmitChecklistPayload';
   activity: Activity;
+  code: Scalars['String'];
+  success: Scalars['Boolean'];
 };
 
 export type SubmitFormResponseInput = {
