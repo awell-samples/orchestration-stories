@@ -11,7 +11,7 @@ import { Spinner } from '@/components/Spinner'
 import { useEvaluateFormRules } from '@/hooks/awell-orchestration/useEvaluateFormRules'
 import { useForm } from '@/hooks/awell-orchestration/useForm'
 import { QuestionWithVisibility } from '@/types/form.types'
-import { Form, UserQuestionType } from '@/types/generated/api.types'
+import { type Form, UserQuestionType } from '@/types/generated/api.types'
 import {
   calculatePercentageCompleted,
   convertToAwellInput,
@@ -195,7 +195,6 @@ const Form: FC<{ form: Form }> = (form) => {
           <Question
             // @ts-expect-error fix typing
             question={visibleQuestions?.[current]}
-            // @ts-expect-error fix typing
             control={control}
             getValues={getValues}
             key={visibleQuestions?.[current].id}

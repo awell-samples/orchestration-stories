@@ -1,20 +1,20 @@
 import { FC } from 'react'
-import {
-  DeepRequired,
-  FieldErrorsImpl,
-  FieldValues,
-  UseFormRegister,
-} from 'react-hook-form'
+// eslint-disable-next-line import/named
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form'
 
 import {
   type DataPointDefinition,
   DataPointValueType,
 } from '../../../../types/generated/api.types'
 
+type DeepRequired<T> = {
+  [P in keyof T]-?: DeepRequired<T[P]>
+}
+
 interface BaselineInfoProps {
   dataPoints: Array<DataPointDefinition>
   register: UseFormRegister<FieldValues>
-  errors: FieldErrorsImpl<DeepRequired<FieldValues>>
+  errors: FieldErrors<DeepRequired<FieldValues>>
 }
 
 export const BaselineInfo: FC<BaselineInfoProps> = ({

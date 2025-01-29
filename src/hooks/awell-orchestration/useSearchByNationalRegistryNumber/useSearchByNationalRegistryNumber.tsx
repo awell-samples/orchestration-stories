@@ -16,6 +16,7 @@ interface UseSearchByNationalRegistryNumberHook {
   called: boolean
   searchByNationalRegistryNumber: (
     options?: QueryLazyOptions<searchVariables> | undefined
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ) => Promise<LazyQueryResult<any, searchVariables>>
   results: User[]
 }
@@ -23,6 +24,7 @@ interface UseSearchByNationalRegistryNumberHook {
 export const useSearchByNationalRegistryNumber =
   (): UseSearchByNationalRegistryNumberHook => {
     const [searchByNationalRegistryNumber, { called, loading, error, data }] =
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       useLazyQuery<any, searchVariables>(SEARCH_BY_NATIONAL_REGISTRY_NUMBER)
 
     if (error) {

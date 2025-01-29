@@ -1,4 +1,5 @@
-import { FormError } from '@awell_health/ui-library/dist/types/types'
+import { type FormError } from '@awell_health/ui-library'
+// eslint-disable-next-line import/named
 import { FieldErrors, FieldValues } from 'react-hook-form'
 
 const getErrorMessage = (errorType: string | number) => {
