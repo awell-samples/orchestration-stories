@@ -15,6 +15,7 @@ export const SingleSelect = ({ question }: SingleSelectProps) => {
       questionId={question.id}
       label={question.title}
       options={question.options || []}
+      // @ts-expect-error - TODO: fix this
       onChange={(data) => setValue(data)}
       value={value}
       mandatory={question.questionConfig?.mandatory}

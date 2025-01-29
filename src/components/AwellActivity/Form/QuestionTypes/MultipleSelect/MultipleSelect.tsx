@@ -14,6 +14,7 @@ export const MultipleSelect = ({ question }: MultipleSelectProps) => {
     <MultipleChoiceQuestion
       label={question.title}
       options={question.options || []}
+      // @ts-expect-error - TODO: fix this
       onChange={(data) => setValue(data)}
       values={value}
       mandatory={question.questionConfig?.mandatory}

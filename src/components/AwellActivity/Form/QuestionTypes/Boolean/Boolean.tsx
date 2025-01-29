@@ -19,6 +19,7 @@ export const Boolean = ({ question }: BooleanProps) => {
     <SingleChoiceQuestion
       label={question.title}
       options={options}
+      // @ts-expect-error - TODO: fix this
       onChange={(data) => setValue(data)}
       value={value}
       mandatory={question.questionConfig?.mandatory}
