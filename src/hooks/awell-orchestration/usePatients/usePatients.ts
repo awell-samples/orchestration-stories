@@ -65,6 +65,8 @@ export const usePatients = (): UsePatientsHook => {
       count: COUNT,
       total_count,
     },
-    patients: data?.patients.patients || [],
+    // patients: data?.patients.patients || [],
+    // !IMPORTANT: see https://awellhealth.slack.com/archives/CV1UCBUHF/p1739560148094269
+    patients: [],
   }
 }
