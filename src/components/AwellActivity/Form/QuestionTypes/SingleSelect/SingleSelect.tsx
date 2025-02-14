@@ -1,4 +1,4 @@
-import { SingleChoiceQuestion } from '@awell_health/ui-library'
+import { SingleChoiceQuestion } from '@awell-health/ui-library'
 import { useState } from 'react'
 
 import type { Option, Question } from '@/types/generated/api.types'

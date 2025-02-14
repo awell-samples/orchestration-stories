@@ -1,4 +1,4 @@
-import { Description } from '@awell_health/ui-library'
+import { Description } from '@awell-health/ui-library'
 
 import { type Question } from '../../../../../types/generated/api.types'
 

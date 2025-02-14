@@ -1,4 +1,4 @@
-import { type Question, Option } from './generated/api.types'
+import { type Option, type Question } from './generated/api.types'
 
 export type QuestionWithVisibility = Question & { visible: boolean }
 

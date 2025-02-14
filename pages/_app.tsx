@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 
 import { ApolloProvider } from '@apollo/client'
-import { ThemeProvider } from '@awell_health/ui-library'
+import { ThemeProvider } from '@awell-health/ui-library'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import type { NextPage } from 'next/types'

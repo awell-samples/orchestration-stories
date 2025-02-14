@@ -1,4 +1,4 @@
-import { Button, Question } from '@awell_health/ui-library'
+import { Button, Question } from '@awell-health/ui-library'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import { debounce, isEmpty } from 'lodash'
 import Link from 'next/link'
@@ -10,7 +10,7 @@ import { Spinner } from '@/components/Spinner'
 import { useEvaluateFormRules } from '@/hooks/awell-orchestration/useEvaluateFormRules'
 import { useForm } from '@/hooks/awell-orchestration/useForm'
 import { AnswerValue, QuestionWithVisibility } from '@/types/form.types'
-import { Form } from '@/types/generated/api.types'
+import { type Form } from '@/types/generated/api.types'
 import {
   convertFormErrorsToAwellErrors,
   convertToAwellInput,
@@ -122,18 +122,19 @@ const Form: FC<{ form: Form }> = (form) => {
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-8">
-          {visibleQuestions.map((visibleQuestion) => (
-            <div key={visibleQuestion.id}>
-              <Question
-                // @ts-expect-error fix typing
-                question={visibleQuestion}
-                control={control}
-                getValues={getValues}
-                key={visibleQuestion.id}
-                errors={convertFormErrorsToAwellErrors(errors)}
-              />
-            </div>
-          ))}
+          {visibleQuestions.map((visibleQuestion) => {
+            return (
+              <div key={visibleQuestion.id}>
+                <Question
+                  question={visibleQuestion}
+                  control={control}
+                  getValues={getValues}
+                  key={visibleQuestion.id}
+                  errors={convertFormErrorsToAwellErrors(errors)}
+                />
+              </div>
+            )
+          })}
         </div>
         {!isEmpty(errors) && (
           <div className="mt-6 text-red-600">

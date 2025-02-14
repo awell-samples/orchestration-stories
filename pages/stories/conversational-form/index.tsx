@@ -1,5 +1,5 @@
-import { Button, ProgressIndicator, Question } from '@awell_health/ui-library'
-import { FormError } from '@awell_health/ui-library/dist/types/types'
+import { Button, ProgressIndicator, Question } from '@awell-health/ui-library'
+import { FormError } from '@awell-health/ui-library/dist/types/types'
 import { InformationCircleIcon } from '@heroicons/react/outline'
 import { isEmpty } from 'lodash'
 import Link from 'next/link'
@@ -193,7 +193,6 @@ const Form: FC<{ form: Form }> = (form) => {
       ) : (
         <div className="flex flex-col space-y-8">
           <Question
-            // @ts-expect-error fix typing
             question={visibleQuestions?.[current]}
             control={control}
             getValues={getValues}

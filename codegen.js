@@ -9,7 +9,7 @@ module.exports = {
     [process.env.GRAPHQL_API_URL ??
     'https://api.sandbox.awellhealth.com/orchestration/m2m/graphql']: {
       headers: {
-        apiKey: process.env.GRAPHQL_API_KEY,
+        apiKey: process.env.GRAPHQL_API_KEY_NICKS_API_TENANT,
       },
     },
   },

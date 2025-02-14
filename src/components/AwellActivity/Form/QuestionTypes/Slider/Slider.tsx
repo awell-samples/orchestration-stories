@@ -1,4 +1,4 @@
-import { RangeInput } from '@awell_health/ui-library'
+import { RangeInput } from '@awell-health/ui-library'
 import { useState } from 'react'
 
 import type { Question } from '@/types/generated/api.types'

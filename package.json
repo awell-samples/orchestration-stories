@@ -16,8 +16,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.12.8",
-    "@awell_health/ui-library": "^0.1.22",
-    "@awell-health/ui-library": "^0.1.87",
+    "@awell-health/ui-library": "^0.1.90",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.8",
     "@heroicons/react": "^1.0.6",

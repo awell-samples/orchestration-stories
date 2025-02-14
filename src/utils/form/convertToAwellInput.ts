@@ -1,7 +1,13 @@
+import { isEmpty, isNil } from 'lodash'
+
 import { AnswerValue } from '@/types/form.types'
 import { AnswerInput } from '@/types/question.types'
 
 const ensureString = (answer: AnswerValue): string => {
+  if (isNil(answer) || isEmpty(answer)) {
+    return ''
+  }
+
   if (typeof answer === 'string') {
     return answer
   }
@@ -18,8 +24,12 @@ const ensureString = (answer: AnswerValue): string => {
     return JSON.stringify(answer.map(({ value }) => value))
   }
 
-  if (typeof answer.value === 'boolean') {
+  if (typeof answer?.value === 'boolean') {
     return answer.value ? '1' : '0'
+  }
+
+  if (typeof answer?.value === 'string') {
+    return answer.value
   }
 
   return JSON.stringify(answer?.value)
