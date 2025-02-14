@@ -1,7 +1,7 @@
-import { type ApolloQueryResult, useQuery } from '@apollo/client'
+import { type ApolloQueryResult } from '@apollo/client'
 
 import { type User } from '../../../types/generated/api.types'
-import { GET_PATIENTS } from './graphql/GetPatients.graphql'
+// import { GET_PATIENTS } from './graphql/GetPatients.graphql'
 
 type FetchMoreArgs = {
   offset: number
@@ -32,38 +32,39 @@ interface UsePatientsHook {
 const COUNT = 10
 
 export const usePatients = (): UsePatientsHook => {
-  const {
-    data,
-    loading,
-    error,
-    fetchMore,
-    refetch: refetchPatients,
-  } = useQuery(GET_PATIENTS, {
-    variables: {
-      offset: 0,
-      count: COUNT,
-      sort_field: 'last_name',
-      sort_direction: 'desc',
-    },
-    // Rerender with loading:true whenever fetchMore is called
-    notifyOnNetworkStatusChange: true,
-  })
+  // const {
+  //   data,
+  //   loading,
+  //   error,
+  //   fetchMore,
+  //   refetch: refetchPatients,
+  // } = useQuery(GET_PATIENTS, {
+  //   variables: {
+  //     offset: 0,
+  //     count: COUNT,
+  //     sort_field: 'last_name',
+  //     sort_direction: 'desc',
+  //   },
+  //   // Rerender with loading:true whenever fetchMore is called
+  //   notifyOnNetworkStatusChange: true,
+  // })
 
-  if (error) {
-    console.log(error)
-  }
+  // if (error) {
+  //   console.log(error)
+  // }
 
-  const offset = data?.patients.pagination.offset || 0
-  const total_count = data?.patients.pagination.total_count || 0
+  // const offset = data?.patients.pagination.offset || 0
+  // const total_count = data?.patients.pagination.total_count || 0
 
   return {
-    loading,
-    fetchMore,
-    refetchPatients,
+    loading: false,
+    fetchMore: () => true,
+    refetchPatients: () =>
+      Promise.resolve({ data: {}, loading: false, networkStatus: 7 }),
     pagination: {
-      offset,
+      offset: 0,
       count: COUNT,
-      total_count,
+      total_count: 0,
     },
     // patients: data?.patients.patients || [],
     // !IMPORTANT: see https://awellhealth.slack.com/archives/CV1UCBUHF/p1739560148094269
