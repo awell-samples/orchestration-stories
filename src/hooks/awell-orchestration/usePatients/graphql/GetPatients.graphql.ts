@@ -6,8 +6,8 @@ export const GET_PATIENTS = gql`
     $national_registry_number: String
     $profile_id: [String!]
     $search: String
-    $count: Float!
-    $offset: Float!
+    $count: Int!
+    $offset: Int!
     $sort_field: String!
     $sort_direction: String!
   ) {
