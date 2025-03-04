@@ -44,44 +44,6 @@ export const stories: Stories = [
     ],
   },
   {
-    id: 'search-patients',
-    title: 'Search patients',
-    description:
-      'Learn how to create a search based on patient code or national registry number',
-    docsUrl:
-      '/awell-orchestration/docs/use-cases/custom-integration/stories/patient-search',
-    codeUrl:
-      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/patient-search/index.tsx',
-    categories: ['Patients'],
-    operations: [
-      {
-        type: 'QUERY',
-        operationName: 'searchPatientsByPatientCode',
-      },
-      {
-        type: 'QUERY',
-        operationName: 'searchPatientsByNationalRegistryNumber',
-      },
-    ],
-  },
-  {
-    id: 'activity-feed',
-    title: 'Create an activity feed',
-    description:
-      'Create a chronological activity feed of everything happening in a pathway.',
-    docsUrl:
-      '/awell-orchestration/docs/use-cases/custom-integration/stories/activity-feed',
-    codeUrl:
-      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/activity-feed/index.tsx',
-    categories: ['Activities', 'Pathway view'],
-    operations: [
-      {
-        type: 'QUERY',
-        operationName: 'pathwayActivities',
-      },
-    ],
-  },
-  {
     id: 'conversational-form',
     title: 'Display a conversational form (questions one-by-one)',
     description:
@@ -149,27 +111,6 @@ export const stories: Stories = [
     ],
   },
   {
-    id: 'message',
-    title: 'Display a message action',
-    description:
-      'Display a message with subject, content, and attachments to your clients. Additionally, let the Awell API known that the message was read.',
-    docsUrl:
-      '/awell-orchestration/docs/use-cases/custom-integration/stories/message',
-    codeUrl:
-      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/message/index.tsx',
-    categories: ['Activities', 'Message'],
-    operations: [
-      {
-        type: 'QUERY',
-        operationName: 'pathwayDataPointDefinitions',
-      },
-      {
-        type: 'MUTATION',
-        operationName: 'markMessageAsRead',
-      },
-    ],
-  },
-  {
     id: 'patient-list',
     title: 'Create a patient list',
     description:
@@ -204,23 +145,6 @@ export const stories: Stories = [
       {
         type: 'MUTATION',
         operationName: 'updatePatient',
-      },
-    ],
-  },
-  {
-    id: 'timeline',
-    title: 'Create a timeline view',
-    description:
-      "Construct a Gantt or Timeline-style view that gives your users a high-level view of a patient's progress through a care flow.",
-    docsUrl:
-      '/awell-orchestration/docs/use-cases/custom-integration/stories/timeline',
-    codeUrl:
-      'https://github.com/awell-health/orchestration-stories/blob/main/pages/stories/timeline/index.tsx',
-    categories: ['Elements', 'Pathway view'],
-    operations: [
-      {
-        type: 'QUERY',
-        operationName: 'pathwayElements',
       },
     ],
   },

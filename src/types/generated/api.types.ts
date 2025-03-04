@@ -596,6 +596,8 @@ export enum DataPointSourceType {
 }
 
 export enum DataPointValueType {
+  Attachment = 'ATTACHMENT',
+  AttachmentsArray = 'ATTACHMENTS_ARRAY',
   Boolean = 'BOOLEAN',
   Date = 'DATE',
   Json = 'JSON',
@@ -782,6 +784,14 @@ export type ExtensionDataPoint = {
 export type ExtensionDataPointInput = {
   key: Scalars['String'];
   value: Scalars['String'];
+};
+
+export type FileUploadGcsPayload = Payload & {
+  __typename?: 'FileUploadGCSPayload';
+  code: Scalars['String'];
+  file_url: Scalars['String'];
+  success: Scalars['Boolean'];
+  upload_url: Scalars['String'];
 };
 
 export type FilterActivitiesParams = {
@@ -1488,6 +1498,7 @@ export type PatientPathway = {
   latest_activity_type?: Maybe<Scalars['String']>;
   pathway_definition_id: Scalars['String'];
   release_id: Scalars['String'];
+  start_date: Scalars['String'];
   status: PathwayStatus;
   status_explanation?: Maybe<Scalars['String']>;
   stop_date?: Maybe<Scalars['String']>;
@@ -1628,6 +1639,8 @@ export type Query = {
   forms: FormsPayload;
   generateRetoolEmbedUrl: GenerateRetoolEmbedUrlPayload;
   getOrchestrationFactsFromPrompt: OrchestrationFactsPromptPayload;
+  /** Generate a signed URL for file upload to GCS */
+  getSignedUrl: FileUploadGcsPayload;
   getStatusForPublishedPathwayDefinitions: PublishedPathwayDefinitionsPayload;
   hostedPagesLink: HostedPagesLinkPayload;
   hostedSession: HostedSessionPayload;
@@ -1789,6 +1802,13 @@ export type QueryGenerateRetoolEmbedUrlArgs = {
 export type QueryGetOrchestrationFactsFromPromptArgs = {
   pathway_id: Scalars['String'];
   prompt: Scalars['String'];
+};
+
+
+export type QueryGetSignedUrlArgs = {
+  content_type: Scalars['String'];
+  expires_in?: InputMaybe<Scalars['Float']>;
+  file_name: Scalars['String'];
 };
 
 
@@ -2585,7 +2605,9 @@ export enum UserQuestionType {
   Date = 'DATE',
   Description = 'DESCRIPTION',
   Email = 'EMAIL',
+  File = 'FILE',
   Icd10Classification = 'ICD10_CLASSIFICATION',
+  Image = 'IMAGE',
   LongText = 'LONG_TEXT',
   MultipleChoice = 'MULTIPLE_CHOICE',
   MultipleChoiceGrid = 'MULTIPLE_CHOICE_GRID',

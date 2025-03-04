@@ -110,6 +110,11 @@ export default function CreatePatientStory() {
           <h3 className="text-lg leading-6 font-medium text-gray-900">
             Create patient
           </h3>
+          <p className="text-sm text-gray-500">
+            Note: any data entered in this story will be saved in a shared
+            Sandbox environment so you might want to be careful what data you
+            enter here. We recommend using dummy test data.
+          </p>
         </div>
         <div className="mt-5 md:col-span-2">
           <form onSubmit={handleSubmit(onCreatePatient)}>

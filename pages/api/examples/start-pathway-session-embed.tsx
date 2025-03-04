@@ -2,10 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next/types'
 
 import { type StartHostedPathwaySessionPayload } from '@/types/generated/api.types'
 
-const AWELL_API_ENDPOINT = process.env.GRAPHQL_API_URL || ''
-const AWELL_API_KEY = process.env.GRAPHQL_API_KEY_NICKS_API_TENANT || ''
-// Onboarding template pathway created in the public tenant on Sandbox
-const PATHWAY_DEFINITION_ID = 'tkwhf-3_xjrM'
+const AWELL_API_ENDPOINT = process.env.AWELL_API_URL || ''
+const AWELL_API_KEY = process.env.AWELL_API_KEY || ''
+
+const PATHWAY_DEFINITION_ID = 'sCpKqUofiHA3NCqo0A4fR'
+const PATIENT_ID = 'SVgrGxYS19jo9Ulpm717Q'
 
 export default async function handler(
   req: NextApiRequest,
@@ -31,6 +32,7 @@ export default async function handler(
         variables: {
           input: {
             pathway_definition_id: PATHWAY_DEFINITION_ID,
+            patient_id: PATIENT_ID,
             success_url: `${req.headers.origin}/stories/hosted-pathway?success=true`,
             cancel_url: `${req.headers.origin}/stories/hosted-pathway?canceled=true`,
           },

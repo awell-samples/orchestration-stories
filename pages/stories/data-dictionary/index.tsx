@@ -5,7 +5,7 @@ import { Spinner } from '@/components/Spinner'
 import { usePathwayDataPointDefinitions } from '@/hooks/awell-orchestration'
 import { DataPointDefinition } from '@/types/generated/api.types'
 
-const EXAMPLE_RELEASE_ID = '5RdmrReO_czhAZTDe30bV'
+const EXAMPLE_RELEASE_ID = 'ohZArDy3bCn9FEE3zRIcn'
 export default function DataDictionaryStory() {
   const { getPathwayDataPointDefinitions } = usePathwayDataPointDefinitions()
   const [isLoading, setIsLoading] = useState(true)

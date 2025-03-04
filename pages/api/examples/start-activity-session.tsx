@@ -2,12 +2,12 @@ import type { NextApiRequest, NextApiResponse } from 'next/types'
 
 import { type StartPathwayPayload } from '@/types/generated/api.types'
 
-const AWELL_API_ENDPOINT = process.env.GRAPHQL_API_URL || ''
-const AWELL_API_KEY = process.env.GRAPHQL_API_KEY_NICKS_API_TENANT || ''
-// Template pathway created in the public tenant on Sandbox
-const PATHWAY_DEFINITION_ID = 'aqlAwv8cih-t'
-const PATIENT_ID = 'qDHyOo2IpvDGdxbFZ4Ocl'
-const EMAIL_DATAPOINT_DEFINITION_ID = 'zpY4LlF29O-E'
+const AWELL_API_ENDPOINT = process.env.AWELL_API_URL || ''
+const AWELL_API_KEY = process.env.AWELL_API_KEY || ''
+
+const PATHWAY_DEFINITION_ID = 'qs9fCgmXcu78'
+const PATIENT_ID = 'N7FfFnuMihmj7Z0AqT9ad'
+const EMAIL_DATAPOINT_DEFINITION_ID = 'Uz5Kw8RMAKs2'
 
 export default async function handler(
   req: NextApiRequest,

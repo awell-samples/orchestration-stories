@@ -4,14 +4,14 @@ import { FC, ReactNode, useEffect, useState } from 'react'
 import { StoryLayout } from '@/components/Layouts/StoryLayout'
 import { Spinner } from '@/components/Spinner'
 import {
-  useCreatePatient,
   usePathwayActivities,
   useStartHostedActivitySession,
   useStartPathway,
 } from '@/hooks/awell-orchestration'
 import { ActivityStatus } from '@/types/generated/api.types'
 
-const STORY_PATHWAY_DEFINITION_ID = 'tkwhf-3_xjrM'
+const STORY_PATHWAY_DEFINITION_ID = 'gXPO4j2kcq92'
+const PATIENT_ID = 'UwizfHbehxqrv6X7vH44i'
 
 const PatientPathwayActivityList: FC<{ pathwayId: string }> = ({
   pathwayId,
@@ -135,7 +135,6 @@ export default function PatientActivityFeedWithHostedPagesStory() {
   const [startedPathwayId, setStartedPathwayId] = useState<string | null>(null)
 
   const { startPathway } = useStartPathway()
-  const { createPatient } = useCreatePatient()
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search)
@@ -146,9 +145,8 @@ export default function PatientActivityFeedWithHostedPagesStory() {
       setIsInitiatingStory(false)
     } else {
       const initStory = async () => {
-        const patient = await createPatient({})
         const startedPathwayId = await startPathway({
-          patient_id: patient.id,
+          patient_id: PATIENT_ID,
           pathway_definition_id: STORY_PATHWAY_DEFINITION_ID,
         })
 

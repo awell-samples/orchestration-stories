@@ -1,8 +1,8 @@
 import httpProxy from 'http-proxy'
 import type { NextApiRequest, NextApiResponse } from 'next/types'
 
-const API_URL = process.env.GRAPHQL_API_URL
-const API_KEY = process.env.GRAPHQL_API_KEY_NICKS_API_TENANT || ''
+const API_URL = process.env.AWELL_API_URL
+const API_KEY = process.env.AWELL_API_KEY || ''
 
 const proxy = httpProxy.createProxyServer()
 
